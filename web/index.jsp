@@ -16,13 +16,20 @@
     <%
         int flag=1;
         if(request.getParameter("submit")!=null){
-            try {              
+            try {
+//                connecting to database
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
                 Statement stmt=con.createStatement();  
-                ResultSet rs=stmt.executeQuery("select * from employee");
-               while(rs.next())  
-                   System.out.println("name: "+rs.getString("name"));  
+//                getting password for email    
+                ResultSet rs=stmt.executeQuery("SELECT password FROM employee WHERE email=\""+request.getParameter("email")+"\"");
+//                checking password
+                if(rs.next()&&request.getParameter("password").equals(rs.getString("password"))){
+                    System.out.println("login success");
+                }else{
+                    flag=0;
+                }
+//                closing database connection
                 con.close();  
             }catch(SQLException e) {
                 out.println("SQLException caught: " +e.getMessage());
@@ -47,9 +54,10 @@
                 <input type="submit" name="submit" class="btn btn-primary" value="Login"/>
             </form>
             <%
+//                if login failed display error message
                 if(flag==0){
             %>
-            <div class="alert alert-warning" role="alert">iyviviui</div>    
+            <div class="alert alert-warning" role="alert">Incorrect email or password</div>    
             <%
                 }
             %>

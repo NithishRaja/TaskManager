@@ -61,7 +61,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
                 Statement stmt=con.createStatement();  
-                ResultSet rs=stmt.executeQuery("select * from employee");
+                    ResultSet rs=stmt.executeQuery("select * from employee");
                while(rs.next())  
                    System.out.println("name: "+rs.getString("name"));  
                 con.close();  
