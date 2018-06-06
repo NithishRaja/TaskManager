@@ -3,6 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.sql.*;
 
 public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -56,9 +57,17 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
 
         int flag=1;
         if(request.getParameter("submit")!=null){
-            System.out.println(request.getParameter("email"));
-        }else{
-            flag=0;
+            try {              
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
+                Statement stmt=con.createStatement();  
+                ResultSet rs=stmt.executeQuery("select * from employee");
+               while(rs.next())  
+                   System.out.println("name: "+rs.getString("name"));  
+                con.close();  
+            }catch(SQLException e) {
+                out.println("SQLException caught: " +e.getMessage());
+            }
         }
     
       out.write("\n");

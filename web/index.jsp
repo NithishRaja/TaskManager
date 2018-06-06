@@ -3,7 +3,7 @@
     Created on : 6 Jun, 2018, 10:37:31 AM
     Author     : Nithish Raja.G
 --%>
-
+<%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,9 +16,17 @@
     <%
         int flag=1;
         if(request.getParameter("submit")!=null){
-            System.out.println(request.getParameter("email"));
-        }else{
-            flag=0;
+            try {              
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
+                Statement stmt=con.createStatement();  
+                ResultSet rs=stmt.executeQuery("select * from employee");
+               while(rs.next())  
+                   System.out.println("name: "+rs.getString("name"));  
+                con.close();  
+            }catch(SQLException e) {
+                out.println("SQLException caught: " +e.getMessage());
+            }
         }
     %>
     <body class="container">
