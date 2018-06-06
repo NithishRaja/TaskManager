@@ -22,10 +22,15 @@
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
                 Statement stmt=con.createStatement();  
 //                getting password for email    
-                ResultSet rs=stmt.executeQuery("SELECT password FROM employee WHERE email=\""+request.getParameter("email")+"\"");
+                ResultSet rs=stmt.executeQuery("SELECT name, password, isAdmin FROM employee WHERE email=\""+request.getParameter("email")+"\"");
 //                checking password
                 if(rs.next()&&request.getParameter("password").equals(rs.getString("password"))){
                     System.out.println("login success");
+//                    TODO: redirect to diffrent page if isAdmin==1
+                    session.setAttribute("name", rs.getString("name"));
+                    session.setAttribute("email", request.getParameter("email"));
+                    response.setStatus(response.SC_MOVED_TEMPORARILY);
+                    response.setHeader("Location", "./src/worker/index.jsp"); 
                 }else{
                     flag=0;
                 }
