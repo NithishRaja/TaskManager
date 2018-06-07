@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" 
               href="./static/css/bootstrap.css"/>
-        <title>Login</title>
+        <title>TASK MANAGER</title>
     </head>
     <%
         int flag=1;
@@ -26,13 +26,13 @@
 //                checking password
                 if(rs.next()&&request.getParameter("password").equals(rs.getString("password"))){
                     System.out.println("login success");
-//                    TODO: redirect to diffrent page if isAdmin==1
                     session.setAttribute("name", rs.getString("name"));
                     session.setAttribute("email", request.getParameter("email"));
                     if(rs.getString("isAdmin").equals("true")){
                         response.setStatus(response.SC_MOVED_TEMPORARILY);
                         response.setHeader("Location", "./src/admin/index.jsp"); 
                     }else{
+//                        TODO: redirect to worker page
                         System.out.println("not admin");
                     }
                 }else{
