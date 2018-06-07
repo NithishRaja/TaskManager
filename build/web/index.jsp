@@ -29,8 +29,12 @@
 //                    TODO: redirect to diffrent page if isAdmin==1
                     session.setAttribute("name", rs.getString("name"));
                     session.setAttribute("email", request.getParameter("email"));
-                    response.setStatus(response.SC_MOVED_TEMPORARILY);
-                    response.setHeader("Location", "./src/worker/index.jsp"); 
+                    if(rs.getString("isAdmin").equals("true")){
+                        response.setStatus(response.SC_MOVED_TEMPORARILY);
+                        response.setHeader("Location", "./src/admin/index.jsp"); 
+                    }else{
+                        System.out.println("not admin");
+                    }
                 }else{
                     flag=0;
                 }

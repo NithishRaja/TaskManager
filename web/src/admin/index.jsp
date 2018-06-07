@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : 6 Jun, 2018, 7:54:06 PM
+    Created on : 7 Jun, 2018, 7:10:05 PM
     Author     : Nithish Raja.G
 --%>
 
@@ -12,9 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%
-            out.println(session.getAttribute("name"));
-            out.println(session.getAttribute("email"));
-        %>
+        <h1>Hello World!</h1>
     </body>
 </html>
