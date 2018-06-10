@@ -4,8 +4,15 @@ Simple task managing system with admin assigning task to workers and update task
 
 ## GETTING STARTED
 
-* source code is in `/web` directory
+* use Netbeans and create a JSP web project
+* replace the web folder in the project directory with the folder in this repo
 * create database taskmanager with tables as specified below
+
+## EDITING CODE
+
+* code can be found inside `/web` directory
+* main code is inside `/web/src` directory
+* static files are found inside `/web/static` directory
 
 ## DATABASES
 
