@@ -2,3 +2,4 @@ build/
 nbproject/
 src/
 test/
+!web/src
