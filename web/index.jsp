@@ -46,9 +46,22 @@
         }
     %>
     <body class="container">
+        <header>
+            <h1>
+                Login
+            </h1>
+        </header>
         <section>
             <form method="POST">
-                
+                <div>
+                    <label for="email">Email: </label>
+                    <input type="text" id="email" name="email" placeholder="enter email"/>
+                </div>
+                <div>
+                    <label for="password">Password: </label>
+                    <input type="password" id="password" name="password" placeholder="enter password"/>
+                </div>
+                <input type="submit" name="submit" value="Login"/>
             </form>
         </section>
     </body>
