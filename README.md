@@ -6,8 +6,8 @@ Simple task managing system with admin assigning task to workers and update task
 
 * use Netbeans and create a JSP web project
 * replace the web folder in the project directory with the folder in this repo
-* create database taskmanager with tables as specified below
-* finally run the project using netbeans
+* create database **taskmanager** with tables as specified below
+* finally run the project using Netbeans
 
 ## EDITING CODE
 
@@ -17,6 +17,7 @@ Simple task managing system with admin assigning task to workers and update task
 
 ## DATABASES
 
-* employee table: id VARCHAR(20) PRIMARY KEY AUTO_INCREMENT, name VARCHAR(20), email VARCHAR(40), isAdmin VARCHAR(10)
-
-* tasklist table: id INT(20) PRIMARY KEY AUTO_INCREMENT, department VARCHAR(40), worker_assigned INT(20), status VARCHAR(20), remarks VARCHAR(40), description VARCHAR(40)
+* department table: id INT(20) PRIMARY KEY AUTO_INCREMENT, department_name VARCHAR(20)
+* worker table: id INT(20) PRIMARY KEY AUTO_INCREMENT, name VARCHAR(20), email VARCHAR(40), department_id INT(20), status VARCHAR(20)
+* tasklist table: id INT(20) PRIMARY KEY AUTO_INCREMENT, department_id INT(20), worker_id INT(20), description VARCHAR(80), remarks VARCHAR(40), status VARCHAR(20), date DATE
+* files: id INT(20) PRIMARY KEY AUTO_INCREMENT, task_id INT(20), filepath VARCHAR(40), file_name VARCHAR(20)
