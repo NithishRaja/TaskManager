@@ -24,12 +24,24 @@
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
                 Statement stmt=con.createStatement();  
-//                getting password for email    
-                ResultSet rs=stmt.executeQuery("SELECT password, status FROM worker WHERE email=\""+request.getParameter("email")+"\"");
+//                getting password for email
+                ResultSet rs=stmt.executeQuery("SELECT password, status, name, email FROM worker WHERE email=\""+request.getParameter("email")+"\"");
 //                checking password
                 if(rs.next()&&request.getParameter("password").equals(rs.getString("password"))){
                     System.out.println("login success");
                     System.out.println(rs.getString("status"));
+                    session.setAttribute("name", rs.getString("name"));
+                    session.setAttribute("email", rs.getString("email"));
+                    if(rs.getString("status").equals("DEO")){
+                        response.setStatus(response.SC_MOVED_TEMPORARILY);
+                        response.setHeader("Location", "./src/DEO/index.jsp"); 
+                    }else if(rs.getString("status").equals("admin")){
+                        response.setStatus(response.SC_MOVED_TEMPORARILY);
+                        response.setHeader("Location", "./src/admin/index.jsp"); 
+                    }else if(rs.getString("status").equals("employee")){
+                        response.setStatus(response.SC_MOVED_TEMPORARILY);
+                        response.setHeader("Location", "./src/worker/index.jsp"); 
+                    }
                 }else{
                     flag=0;
                 }
