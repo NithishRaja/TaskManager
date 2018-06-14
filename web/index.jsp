@@ -14,7 +14,10 @@
         <title>TASK MANAGER</title>
     </head>
     <%
+//        flag to toggle if credentials donot match
         int flag=1;
+//      TODO: check if empty fields are submitted
+//        checking if login form is submitted
         if(request.getParameter("submit")!=null){
             try {
 //                connecting to database
@@ -22,19 +25,11 @@
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
                 Statement stmt=con.createStatement();  
 //                getting password for email    
-                ResultSet rs=stmt.executeQuery("SELECT name, password, isAdmin FROM employee WHERE email=\""+request.getParameter("email")+"\"");
+                ResultSet rs=stmt.executeQuery("SELECT password, status FROM worker WHERE email=\""+request.getParameter("email")+"\"");
 //                checking password
                 if(rs.next()&&request.getParameter("password").equals(rs.getString("password"))){
                     System.out.println("login success");
-                    session.setAttribute("name", rs.getString("name"));
-                    session.setAttribute("email", request.getParameter("email"));
-                    if(rs.getString("isAdmin").equals("true")){
-                        response.setStatus(response.SC_MOVED_TEMPORARILY);
-                        response.setHeader("Location", "./src/admin/index.jsp"); 
-                    }else{
-//                        TODO: redirect to worker page
-                        System.out.println("not admin");
-                    }
+                    System.out.println(rs.getString("status"));
                 }else{
                     flag=0;
                 }
@@ -45,24 +40,31 @@
             }
         }
     %>
-    <body class="container">
+    <body>
         <header>
             <h1>
                 Login
             </h1>
         </header>
         <section>
-            <form method="POST">
+            <form method="POST" action="./index.jsp">
                 <div>
                     <label for="email">Email: </label>
-                    <input type="text" id="email" name="email" placeholder="enter email"/>
+                    <input required type="text" id="email" name="email" placeholder="enter email"/>
                 </div>
                 <div>
                     <label for="password">Password: </label>
-                    <input type="password" id="password" name="password" placeholder="enter password"/>
+                    <input required type="password" id="password" name="password" placeholder="enter password"/>
                 </div>
                 <input type="submit" name="submit" value="Login"/>
             </form>
+            <%
+                if(flag==0){
+            %>
+            <div>Incorrect email and password</div>
+            <%
+                }
+            %>
         </section>
     </body>
 </html>
