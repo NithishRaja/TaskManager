@@ -18,18 +18,23 @@
                 response.setStatus(response.SC_MOVED_TEMPORARILY);
                 response.setHeader("Location", "./../../index.jsp");
             }
-            if(request.getParameter("submit")!=null){
-                System.out.println(request.getParameter("description"));
-                System.out.println(request.getParameter("department"));
-                System.out.println(request.getParameter("remarks"));
-                System.out.println(request.getParameter("date"));
-            }
             try{
 //                connecting to database
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
+//                checking if form is submitted
+                if(request.getParameter("submit")!=null){
+//                    update table if form is submitted
+                    Statement stm = con.createStatement();
+                    String query = "INSERT INTO tasklist VALUES(null,null,"
+                            +request.getParameter("department")+","
+                            +"\""+request.getParameter("description")+"\","
+                            +"\""+request.getParameter("remarks")+"\",\"open\","
+                            +"\""+request.getParameter("date")+"\")";
+                    stm.executeUpdate(query);
+                }
+//                getting the departments list                
                 Statement stmt = con.createStatement();
-//                getting the departments list
                 ResultSet rs=stmt.executeQuery("SELECT * FROM department");
         %>
     <body>
@@ -54,14 +59,16 @@
                     <textarea required 
                               name="description"
                               id="description"
-                              placeholder="enter description here">
+                              placeholder="enter description here"
+                              value="">
                     </textarea>
                 </div>
                 <div>
                     <label for="remarks">Remarks: </label>
                     <textarea name="remarks"
                               id="remarks"
-                              placeholder="enter remarks here">
+                              placeholder="enter remarks here" 
+                              value="">
                     </textarea>
                 </div>
                 <div>
