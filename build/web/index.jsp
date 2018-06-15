@@ -34,13 +34,13 @@
                     session.setAttribute("email", rs.getString("email"));
                     if(rs.getString("status").equals("DEO")){
                         response.setStatus(response.SC_MOVED_TEMPORARILY);
-                        response.setHeader("Location", "./src/DEO/index.jsp"); 
+                        response.setHeader("Location", "./src/DEO/"); 
                     }else if(rs.getString("status").equals("admin")){
                         response.setStatus(response.SC_MOVED_TEMPORARILY);
-                        response.setHeader("Location", "./src/admin/index.jsp"); 
+                        response.setHeader("Location", "./src/admin/"); 
                     }else if(rs.getString("status").equals("employee")){
                         response.setStatus(response.SC_MOVED_TEMPORARILY);
-                        response.setHeader("Location", "./src/worker/index.jsp"); 
+                        response.setHeader("Location", "./src/worker/"); 
                     }
                 }else{
                     flag=0;
