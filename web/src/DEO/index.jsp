@@ -17,12 +17,19 @@
                 response.setStatus(response.SC_MOVED_TEMPORARILY);
                 response.setHeader("Location", "./../../index.jsp");
             }
-//            connecting to database
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
-            Statement stmt = con.createStatement();
-//            getting the departments list
-            ResultSet rs=stmt.executeQuery("SELECT * FROM department");
+
+            try{
+//                connecting to database
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
+                Statement stmt = con.createStatement();
+//                getting the departments list
+                ResultSet rs=stmt.executeQuery("SELECT * FROM department");
+//                closing connection
+                con.close();
+            }catch(Exception e){
+                System.out.println(e);
+            }
         %>
     </head>
     <body>
@@ -30,7 +37,7 @@
             <h1>Add new task</h1>
         </header>
         <section>
-            <form method="POST" >
+            <form method="POST" action="./index.jsp">
                 <div>
                     <label for="department">Department: </label>
                     <select name="department"
@@ -52,8 +59,7 @@
                 </div>
                 <div>
                     <label for="remarks">Remarks: </label>
-                    <textarea required 
-                              name="remarks"
+                    <textarea name="remarks"
                               id="remarks"
                               placeholder="enter remarks here">
                     </textarea>
