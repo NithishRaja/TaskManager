@@ -11,13 +11,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <%
+    </head>
+    <%
 //            redirect to login page if not logged in
             if(session.getAttribute("name")==null){
                 response.setStatus(response.SC_MOVED_TEMPORARILY);
                 response.setHeader("Location", "./../../index.jsp");
             }
-
+            if(request.getParameter("submit")!=null){
+                System.out.println(request.getParameter("description"));
+                System.out.println(request.getParameter("department"));
+                System.out.println(request.getParameter("remarks"));
+                System.out.println(request.getParameter("date"));
+            }
             try{
 //                connecting to database
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -25,13 +31,7 @@
                 Statement stmt = con.createStatement();
 //                getting the departments list
                 ResultSet rs=stmt.executeQuery("SELECT * FROM department");
-//                closing connection
-                con.close();
-            }catch(Exception e){
-                System.out.println(e);
-            }
         %>
-    </head>
     <body>
         <header>
             <h1>Add new task</h1>
@@ -64,8 +64,22 @@
                               placeholder="enter remarks here">
                     </textarea>
                 </div>
+                <div>
+                    <label for="date">Date: </label>
+                    <input required 
+                           type="date" 
+                           name="date"
+                           id="date"/>
+                </div>
                 <input type="submit" name="submit" value="add" />
             </form>
         </section>
     </body>
+    <%
+//            closing connection
+            con.close();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    %>
 </html>
