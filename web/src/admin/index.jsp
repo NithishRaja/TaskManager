@@ -10,6 +10,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <%
+//            redirect to login page if not logged in
+            if(session.getAttribute("name")==null){
+                response.setStatus(response.SC_MOVED_TEMPORARILY);
+                response.setHeader("Location", "./../../index.jsp");
+            }
+        %>
     </head>
     <body>
         <h1>admin</h1>
