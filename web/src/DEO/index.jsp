@@ -1,17 +1,4 @@
-<%-- 
-    Document   : index
-    Created on : 14 Jun, 2018, 8:00:59 PM
-    Author     : Nithish Raja.G
---%>
-
-<%@page import="java.sql.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
+<%@include file="./../../common/head.jsp"%>
     <%
 //            redirect to login page if not logged in
             if(session.getAttribute("name")==null){
@@ -82,11 +69,4 @@
             </form>
         </section>
     </body>
-    <%
-//            closing connection
-            con.close();
-        }catch(Exception e){
-            System.out.println(e);
-        }
-    %>
-</html>
+<%@include file="./../../common/foot.jsp"%>

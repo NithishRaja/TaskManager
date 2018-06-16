@@ -1,16 +1,4 @@
-<%-- 
-    Document   : workerDetails
-    Created on : 16 Jun, 2018, 11:31:59 AM
-    Author     : Nithish Raja.G
---%>
-<%@page import="java.sql.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>TASK MANAGER</title>
-    </head>
+<%@include file="./../../common/head.jsp"%>
     <%
         if(request.getParameter("worker")==null){
 //            if worker is not mentioned redirect to index page
@@ -54,11 +42,4 @@
             </ul>
         </section>
     </body>
-    <%
-//            closing connection
-            con.close();
-        }catch(Exception e){
-            System.out.println(e);
-        }
-    %>
-</html>
+<%@include file="./../../common/foot.jsp"%>

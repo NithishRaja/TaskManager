@@ -1,24 +1,16 @@
-<%-- 
-    Document   : index
-    Created on : 14 Jun, 2018, 8:01:32 PM
-    Author     : Nithish Raja.G
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+<%@include file="./../../common/head.jsp"%>
         <%
 //            redirect to login page if not logged in
             if(session.getAttribute("name")==null){
                 response.setStatus(response.SC_MOVED_TEMPORARILY);
                 response.setHeader("Location", "./../../index.jsp");
             }
+            try{
+//                connecting to database
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
         %>
-    </head>
     <body>
-        <h1>worker</h1>
+        
     </body>
-</html>
+<%@include file="./../../common/foot.jsp"%>
