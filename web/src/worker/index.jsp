@@ -26,6 +26,20 @@
                         System.out.print("There is a problem in updating Record.");
                     } 
                 }
+//                checking if close task form is submitted
+                if(request.getParameter("close_task")!=null){
+//                    updating task status to closed
+                    Statement st = con.createStatement();
+                    String query="UPDATE tasklist SET status=\"closed\" WHERE id="
+                            +request.getParameter("id");
+                    PreparedStatement ps=con.prepareStatement(query);
+                    int i = ps.executeUpdate();
+                    if(i > 0){
+                        System.out.print("Record Updated Successfully");
+                    }else{
+                        System.out.print("There is a problem in updating Record.");
+                    } 
+                }                
 %>
     <body>
         <h1>Assigned Tasks</h1>
@@ -40,9 +54,31 @@
             <label>Remarks: </label><%= task.getString("remarks") %>
             <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
             <label>Date: </label><%= task.getString("date") %>
-            <form method="POST" action="./index.js">
+            <form method="POST" action="./index.jsp">
                 <input type="hidden" name="id" value="<%=task.getInt("id")%>"/>
                 <input type="submit" name="start_task" value="Start task"/>
+            </form>
+        </li>
+        <%}}
+        task.beforeFirst();
+        %>
+        </ul>
+        <h1>In Progress Tasks</h1>
+        <ul>
+        <%while(task.next()){
+            if(task.getString("status").equals("inprogress")){
+                Statement stm = con.createStatement();
+                ResultSet dept = stm.executeQuery("SELECT * FROM department WHERE id="+task.getInt("department_id"));
+        %>
+        <li>
+            <label>Description: </label><%= task.getString("description") %>
+            <label>Remarks: </label><%= task.getString("remarks") %>
+            <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
+            <label>Date: </label><%= task.getString("date") %>
+            <!-- add code to insert files -->
+            <form method="POST" action="./index.jsp">
+                <input type="hidden" name="id" value="<%=task.getInt("id")%>"/>
+                <input type="submit" name="close_task" value="Close task"/>
             </form>
         </li>
         <%}}%>
