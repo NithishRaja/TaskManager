@@ -33,11 +33,14 @@
                 <label>Name: </label><%=worker.getString("name")%>
                 <label>Email: </label><%=worker.getString("email")%>
                 <label>Department: </label><%=dept.next()?dept.getString("department_name"):""%>
+                <a href="./workerDetails.jsp?worker=<%=worker.getInt("id")%>">get more details</a>
             </li>
             <%}%>
         </section>
     </body>
     <%
+//        closing connection
+        con.close();
         }catch(Exception e){
             System.out.println(e);
         }
