@@ -45,6 +45,8 @@
                 ResultSet worker=st.executeQuery("SELECT id, name FROM worker WHERE status=\"employee\"");
         %>
     <body>
+        <%@include file="./nav.jsp"%>
+        <!-- display all tasks categorised according to their status -->
         <section>
             <!-- Display tasks that have status as open -->
             <h1>Open tasks: </h1>
