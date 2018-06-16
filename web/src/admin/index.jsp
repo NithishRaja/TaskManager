@@ -27,7 +27,7 @@
                     Statement s=con.createStatement();
                     String query = "UPDATE tasklist SET worker_id="
                             +request.getParameter("worker")
-                            +" status=\"assigned\""
+                            +", status=\"assigned\""
                             +" WHERE id="+request.getParameter("task");
                     PreparedStatement ps=con.prepareStatement(query);
                     int i = ps.executeUpdate();
@@ -37,17 +37,20 @@
                         System.out.print("There is a problem in updating Record.");
                     } 
                 }
-//                getting open tasks from database
+//                getting all tasks from database
                 Statement stmt=con.createStatement();  
-                ResultSet task = stmt.executeQuery("SELECT id, department_id, description, remarks, date FROM tasklist WHERE status=\"open\"");
+                ResultSet task = stmt.executeQuery("SELECT * FROM tasklist");
 //                getting workers from database
                 Statement st=con.createStatement();
                 ResultSet worker=st.executeQuery("SELECT id, name FROM worker WHERE status=\"employee\"");
         %>
     <body>
         <section>
+            <!-- Display tasks that have status as open -->
+            <h1>Open tasks: </h1>
             <ul>
             <%while(task.next()){
+                if(task.getString("status").equals("open")){
 //                getting department name
                 Statement stm = con.createStatement();
                 ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
@@ -74,7 +77,60 @@
                     <input type="submit" name="submit" value="Asssign Worker" />
                 </form>
             </li>
-            <%}%>
+            <%}}
+                task.beforeFirst();
+            %>
+            </ul>
+            <!-- Display tasks that have status as assigned -->
+            <h1>Assigned tasks: </h1>
+            <ul>
+                <%while(task.next()){
+                    if(task.getString("status").equals("assigned")){
+//                    getting department name
+                    Statement stm = con.createStatement();
+                    ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
+                %>
+                <li>
+                <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
+                <label>Description: </label><%= task.getString("description") %>
+                <label>Remarks: </label><%= task.getString("remarks") %>
+                <label>Date: </label><%= task.getString("date") %>
+                <%}}
+                %>
+            </ul>
+            <!-- Display tasks that have status as inprogress -->
+            <h1>In progress tasks: </h1>
+            <ul>
+                <%while(task.next()){
+                    if(task.getString("status").equals("inprogress")){
+//                    getting department name
+                    Statement stm = con.createStatement();
+                    ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
+                %>
+                <li>
+                <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
+                <label>Description: </label><%= task.getString("description") %>
+                <label>Remarks: </label><%= task.getString("remarks") %>
+                <label>Date: </label><%= task.getString("date") %>
+                <%}}
+                %>
+            </ul>
+            <!-- Display tasks that have status as closed -->
+            <h1>Closed tasks: </h1>
+            <ul>
+                <%while(task.next()){
+                    if(task.getString("status").equals("closed")){
+//                    getting department name
+                    Statement stm = con.createStatement();
+                    ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
+                %>
+                <li>
+                <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
+                <label>Description: </label><%= task.getString("description") %>
+                <label>Remarks: </label><%= task.getString("remarks") %>
+                <label>Date: </label><%= task.getString("date") %>
+                <%}}
+                %>
             </ul>
         </section>
     </body>
