@@ -50,10 +50,12 @@
                 ResultSet dept = stm.executeQuery("SELECT * FROM department WHERE id="+task.getInt("department_id"));
         %>
         <li>
+            <!-- Displaying task details -->
             <label>Description: </label><%= task.getString("description") %>
             <label>Remarks: </label><%= task.getString("remarks") %>
             <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
             <label>Date: </label><%= task.getString("date") %>
+            <!-- Form to change task status from assigned to inprogress -->
             <form method="POST" action="./index.jsp">
                 <input type="hidden" name="id" value="<%=task.getInt("id")%>"/>
                 <input type="submit" name="start_task" value="Start task"/>
@@ -71,11 +73,13 @@
                 ResultSet dept = stm.executeQuery("SELECT * FROM department WHERE id="+task.getInt("department_id"));
         %>
         <li>
+            <!-- Displaying task details -->
             <label>Description: </label><%= task.getString("description") %>
             <label>Remarks: </label><%= task.getString("remarks") %>
             <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
             <label>Date: </label><%= task.getString("date") %>
-            <!-- add code to insert files -->
+            <!-- Form to upload files regarding the task -->
+            <!-- Form to change task status from inprogress to closed -->
             <form method="POST" action="./index.jsp">
                 <input type="hidden" name="id" value="<%=task.getInt("id")%>"/>
                 <input type="submit" name="close_task" value="Close task"/>

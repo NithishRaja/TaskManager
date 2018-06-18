@@ -9,17 +9,7 @@
 //                connecting to database
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
-//                checking if form is submitted
-                if(request.getParameter("submit")!=null){
-//                    update table if form is submitted
-                    Statement stm = con.createStatement();
-                    String query = "INSERT INTO tasklist VALUES(null,null,"
-                            +request.getParameter("department")+","
-                            +"\""+request.getParameter("description")+"\","
-                            +"\""+request.getParameter("remarks")+"\",\"open\","
-                            +"\""+request.getParameter("date")+"\")";
-                    stm.executeUpdate(query);
-                }
+                
 //                getting the departments list                
                 Statement stmt = con.createStatement();
                 ResultSet rs=stmt.executeQuery("SELECT * FROM department");
@@ -29,7 +19,7 @@
             <h1>Add new task</h1>
         </header>
         <section>
-            <form method="POST" action="./index.jsp">
+            <form method="POST" action="./newTask.jsp">
                 <div>
                     <label for="department">Department: </label>
                     <select name="department"
