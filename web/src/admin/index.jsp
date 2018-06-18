@@ -16,29 +16,44 @@
                 Statement st=con.createStatement();
                 ResultSet worker=st.executeQuery("SELECT id, name FROM worker WHERE status=\"employee\"");
         %>
-    <body>
+    <body class="container-fluid">
         <%@include file="./nav.jsp"%>
         <!-- display all tasks categorised according to their status -->
-        <section>
+        <section class="container">
             <!-- Display tasks that have status as open -->
             <h1>Open tasks: </h1>
-            <ul>
             <%while(task.next()){
                 if(task.getString("status").equals("open")){
 //                getting department name
                 Statement stm = con.createStatement();
                 ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
             %>
-            <li>
-                <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
-                <label>Description: </label><%= task.getString("description") %>
-                <label>Remarks: </label><%= task.getString("remarks") %>
-                <label>Date: </label><%= task.getString("date") %>
+            <div class="card">
+                <div class="card-header">
+                    <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
+                    <label>Date: </label><%= task.getString("date") %>
+                </div>
+                <div class="card-body">
+                <label for="open-description">Description: </label>
+                <textarea class="form-control"
+                          id="open-description"
+                          readonly>
+                    <%= task.getString("description") %>
+                </textarea>
+                <label for="open-remarks">Remarks: </label>
+                <textarea class="form-control"
+                          id="open-remarks"
+                          readonly>
+                    <%= task.getString("remarks") %>
+                </textarea>
+                </div>
+                <div class="card-footer">
                 <form method="POST" action="./assignWorker.jsp">
                     <input type="hidden" name="task" value="<%=task.getInt("id")%>"/>
-                    <div>
+                    <div class="form-group">
                         <label for="worker">Worker: </label>
-                        <select required
+                        <select class="form-control"
+                                required
                                 name="worker" 
                                 id="worker">
                             <%while(worker.next()){%>
@@ -48,64 +63,123 @@
                             %>
                         </select>
                     </div>
-                    <input type="submit" name="submit" value="Asssign Worker" />
-                </form>
-            </li>
+                    <input class="btn btn-success" type="submit" name="submit" value="Asssign Worker" />
+                </form>                    
+                </div>
+            </div>
             <%}}
                 task.beforeFirst();
             %>
-            </ul>
             <!-- Display tasks that have status as assigned -->
             <h1>Assigned tasks: </h1>
-            <ul>
                 <%while(task.next()){
                     if(task.getString("status").equals("assigned")){
 //                    getting department name
                     Statement stm = con.createStatement();
                     ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
+//                    getting worker name                    
+                    Statement s = con.createStatement();
+                    ResultSet assignedWorker = s.executeQuery("SELECT name FROM worker WHERE id="+task.getInt("worker_id"));
                 %>
-                <li>
-                <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
-                <label>Description: </label><%= task.getString("description") %>
-                <label>Remarks: </label><%= task.getString("remarks") %>
-                <label>Date: </label><%= task.getString("date") %>
+                <div class="card">
+                <div class="card-header">
+                    <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
+                    <label>Date: </label><%= task.getString("date") %>
+                </div>
+                <div class="card-body">
+                    <label for="assigned-description">Description: </label>
+                    <textarea class="form-control"
+                              id="assigned-description"
+                              readonly>
+                        <%= task.getString("description") %>
+                    </textarea>
+                    <label for="assigned-remarks">Remarks: </label>
+                    <textarea class="form-control"
+                              id="assigned-remarks"
+                              readonly>
+                        <%= task.getString("remarks") %>
+                    </textarea>
+                </div>
+                <div class="card-footer">
+                    <label>Worker: </label><%= assignedWorker.next()?assignedWorker.getString("name"):"" %>
+                </div>
+                </div>
                 <%}}
+                    task.beforeFirst();
                 %>
-            </ul>
             <!-- Display tasks that have status as inprogress -->
             <h1>In progress tasks: </h1>
-            <ul>
                 <%while(task.next()){
                     if(task.getString("status").equals("inprogress")){
 //                    getting department name
                     Statement stm = con.createStatement();
                     ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
+//                    getting worker name
+                    Statement s = con.createStatement();
+                    ResultSet assignedWorker = s.executeQuery("SELECT name FROM worker WHERE id="+task.getInt("worker_id"));
                 %>
-                <li>
-                <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
-                <label>Description: </label><%= task.getString("description") %>
-                <label>Remarks: </label><%= task.getString("remarks") %>
-                <label>Date: </label><%= task.getString("date") %>
+                <div class="card">
+                    <div class="card-header">
+                        <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
+                        <label>Date: </label><%= task.getString("date") %>
+                    </div>    
+                    <div class="card-body">
+                        <label>Description: </label>
+                        <textarea class="form-control"
+                                  id="inprogress-description"
+                                  readonly>
+                            <%= task.getString("description") %>
+                        </textarea>
+                        <label>Remarks: </label>
+                        <textarea class="form-control"
+                                  id="inprogress-remarks"
+                                  readonly>
+                            <%= task.getString("remarks") %>
+                        </textarea>
+                    </div>
+                    <div class="card-footer">
+                        <label>Worker: </label><%= assignedWorker.next()?assignedWorker.getString("name"):"" %>
+                    </div>
+                </div>
                 <%}}
+                    task.beforeFirst();
                 %>
-            </ul>
             <!-- Display tasks that have status as closed -->
             <h1>Closed tasks: </h1>
-            <ul>
                 <%while(task.next()){
                     if(task.getString("status").equals("closed")){
 //                    getting department name
                     Statement stm = con.createStatement();
                     ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
+//                    getting worker name
+                    Statement s = con.createStatement();
+                    ResultSet assignedWorker = s.executeQuery("SELECT name FROM worker WHERE id="+task.getInt("worker_id"));                    
                 %>
-                <li>
-                <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
-                <label>Description: </label><%= task.getString("description") %>
-                <label>Remarks: </label><%= task.getString("remarks") %>
-                <label>Date: </label><%= task.getString("date") %>
+                <div class="card">
+                    <div class="card-header">
+                        <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
+                        <label>Date: </label><%= task.getString("date") %>
+                    </div>
+                    <div class="card-body">
+                        <label for="closed-description">Description: </label>
+                        <textarea class="form-control"
+                                  id="closed-description"
+                                  readonly>
+                            <%= task.getString("description") %>
+                        </textarea>
+                        <label for="closed-remarks">Remarks: </label>
+                        <textarea class="form-control"
+                                  id="closed-remarks"
+                                  readonly>
+                            <%= task.getString("remarks") %>
+                        </textarea>
+                    </div>
+                    <div class="card-footer">
+                        <label>Worker: </label><%= assignedWorker.next()?assignedWorker.getString("name"):"" %>
+                    </div>
+                </div>
                 <%}}
                 %>
-            </ul>
         </section>
     </body>
 <%@include file="./../../common/foot.jsp"%>

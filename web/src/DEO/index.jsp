@@ -8,21 +8,21 @@
             try{
 //                connecting to database
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
-                
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");                
 //                getting the departments list                
                 Statement stmt = con.createStatement();
                 ResultSet rs=stmt.executeQuery("SELECT * FROM department");
         %>
-    <body>
+    <body class="container-fluid">
         <header>
             <h1>Add new task</h1>
         </header>
-        <section>
+        <section class="container">
             <form method="POST" action="./newTask.jsp">
-                <div>
+                <div class="form-group">
                     <label for="department">Department: </label>
-                    <select name="department"
+                    <select class="form-control"
+                            name="department"
                             id="department">
                         <%while(rs.next()){%>
                         <option value="<%= rs.getInt("id") %>">
@@ -31,31 +31,34 @@
                         <%}%>
                     </select>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="description">Description: </label>
-                    <textarea required 
+                    <textarea class="form-control"
+                              required 
                               name="description"
                               id="description"
                               placeholder="enter description here"
                               value="">
                     </textarea>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="remarks">Remarks: </label>
-                    <textarea name="remarks"
+                    <textarea class="form-control"
+                              name="remarks"
                               id="remarks"
                               placeholder="enter remarks here" 
                               value="">
                     </textarea>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="date">Date: </label>
-                    <input required 
+                    <input class="form-control"
+                           required 
                            type="date" 
                            name="date"
                            id="date"/>
                 </div>
-                <input type="submit" name="submit" value="add" />
+                <input class="btn btn-success" type="submit" name="submit" value="add" />
             </form>
         </section>
     </body>

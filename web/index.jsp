@@ -53,7 +53,7 @@
             }
         }
     %>
-    <body>
+    <body class="container">
         <header>
             <h1>
                 Login
@@ -61,15 +61,21 @@
         </header>
         <section>
             <form method="POST" action="./index.jsp">
-                <div>
+                <div class="form-group">
                     <label for="email">Email: </label>
-                    <input required type="text" id="email" name="email" placeholder="enter email"/>
+                    <input class="form-control"
+                           required type="text"
+                           id="email" name="email"
+                           placeholder="enter email"/>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="password">Password: </label>
-                    <input required type="password" id="password" name="password" placeholder="enter password"/>
+                    <input class="form-control"
+                           required type="password"
+                           id="password" name="password"
+                           placeholder="enter password"/>
                 </div>
-                <input type="submit" name="submit" value="Login"/>
+                <input class="btn btn-success" type="submit" name="submit" value="Login"/>
             </form>
             <%
                 if(flag==0){

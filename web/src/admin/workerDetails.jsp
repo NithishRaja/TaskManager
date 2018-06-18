@@ -24,22 +24,56 @@
     <body>
         <section>
             <h1>Details: </h1>
-            <ul>
-                <li><label>Name: </label><%=worker.getString("name")%></li>
-                <li><label>Email: </label><%=worker.getString("email")%></li>
-                <li><label>Department: </label><%=dept.getString("department_name")%></li>                
-            </ul>
+            <div class="card-body">
+                <label for="name">Name: </label>
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       value="<%=worker.getString("name")%>"
+                       readonly>
+                <label for="email">Email: </label>
+                <input type="text"
+                       class="form-control"
+                       if="email"
+                       value="<%=worker.getString("email")%>"
+                       readonly>
+                <label for="department">Department: </label>
+                <input type="text"
+                       class="form-control"
+                       id="department"
+                       value="<%=dept.getString("department_name")%>"
+                       readonly>
+            </div>
             <h1>Tasks: </h1>
-            <ul>
                 <%while(task.next()){%>
-                    <li>
-                        <label>Description: </label><%=task.getString("description")%>
-                        <label>Remarks: </label><%=task.getString("remarks")%>
-                        <label>Status: </label><%=task.getString("status")%>
-                        <label>Date: </label><%=task.getString("date")%>
-                    </li>
+                    <div class="card">
+                        <div class="card-body">
+                        <label for="description">Description: </label>
+                        <textarea class="form-control"
+                                  id="description"
+                                  readonly>
+                            <%=task.getString("description")%>
+                        </textarea>
+                        <label for="remarks">Remarks: </label>
+                        <textarea class="form-control"
+                                  id="remarks"
+                                  readonly>
+                            <%=task.getString("remarks")%>
+                        </textarea>
+                        <label for="status">Status: </label>
+                        <textarea class="form-control"
+                                  id="status"
+                                  readonly>
+                            <%=task.getString("status")%>
+                        </textarea>
+                        <label for="date">Date: </label>
+                        <input type="date"
+                               class="form-control"
+                               id="date"
+                               value="<%=task.getString("date")%>"
+                               readonly/>
+                    </div>
                 <%}%>
-            </ul>
         </section>
     </body>
 <%@include file="./../../common/foot.jsp"%>
