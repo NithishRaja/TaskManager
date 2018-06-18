@@ -11,35 +11,7 @@
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
 //                get current worker tasks from database
                 Statement stmt = con.createStatement();
-                ResultSet task = stmt.executeQuery("SELECT * FROM tasklist WHERE worker_id="+session.getAttribute("id")); 
-//                checking if start task form is submitted
-                if(request.getParameter("start_task")!=null){
-//                    updating task status to inprogress
-                    Statement st = con.createStatement();
-                    String query="UPDATE tasklist SET status=\"inprogress\" WHERE id="
-                            +request.getParameter("id");
-                    PreparedStatement ps=con.prepareStatement(query);
-                    int i = ps.executeUpdate();
-                    if(i > 0){
-                        System.out.print("Record Updated Successfully");
-                    }else{
-                        System.out.print("There is a problem in updating Record.");
-                    } 
-                }
-//                checking if close task form is submitted
-                if(request.getParameter("close_task")!=null){
-//                    updating task status to closed
-                    Statement st = con.createStatement();
-                    String query="UPDATE tasklist SET status=\"closed\" WHERE id="
-                            +request.getParameter("id");
-                    PreparedStatement ps=con.prepareStatement(query);
-                    int i = ps.executeUpdate();
-                    if(i > 0){
-                        System.out.print("Record Updated Successfully");
-                    }else{
-                        System.out.print("There is a problem in updating Record.");
-                    } 
-                }                
+                ResultSet task = stmt.executeQuery("SELECT * FROM tasklist WHERE worker_id="+session.getAttribute("id"));                 
 %>
     <body>
         <h1>Assigned Tasks</h1>
@@ -56,7 +28,7 @@
             <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
             <label>Date: </label><%= task.getString("date") %>
             <!-- Form to change task status from assigned to inprogress -->
-            <form method="POST" action="./index.jsp">
+            <form method="POST" action="./startTask.jsp">
                 <input type="hidden" name="id" value="<%=task.getInt("id")%>"/>
                 <input type="submit" name="start_task" value="Start task"/>
             </form>
@@ -80,7 +52,7 @@
             <label>Date: </label><%= task.getString("date") %>
             <!-- Form to upload files regarding the task -->
             <!-- Form to change task status from inprogress to closed -->
-            <form method="POST" action="./index.jsp">
+            <form method="POST" action="./closeTask.jsp">
                 <input type="hidden" name="id" value="<%=task.getInt("id")%>"/>
                 <input type="submit" name="close_task" value="Close task"/>
             </form>
