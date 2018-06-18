@@ -9,22 +9,6 @@
 //                connecting to database
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
-//                cehcking if sorm is submitted
-                if(request.getParameter("submit")!=null){
-//                    update task list with worker id
-                    Statement s=con.createStatement();
-                    String query = "UPDATE tasklist SET worker_id="
-                            +request.getParameter("worker")
-                            +", status=\"assigned\""
-                            +" WHERE id="+request.getParameter("task");
-                    PreparedStatement ps=con.prepareStatement(query);
-                    int i = ps.executeUpdate();
-                    if(i > 0){
-                        System.out.print("Record Updated Successfully");
-                    }else{
-                        System.out.print("There is a problem in updating Record.");
-                    } 
-                }
 //                getting all tasks from database
                 Statement stmt=con.createStatement();  
                 ResultSet task = stmt.executeQuery("SELECT * FROM tasklist");
@@ -50,7 +34,7 @@
                 <label>Description: </label><%= task.getString("description") %>
                 <label>Remarks: </label><%= task.getString("remarks") %>
                 <label>Date: </label><%= task.getString("date") %>
-                <form method="POST" action="./index.jsp">
+                <form method="POST" action="./assignWorker.jsp">
                     <input type="hidden" name="task" value="<%=task.getInt("id")%>"/>
                     <div>
                         <label for="worker">Worker: </label>
