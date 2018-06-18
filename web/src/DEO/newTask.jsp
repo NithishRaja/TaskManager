@@ -2,6 +2,7 @@
 <%
 //    checking if form is submitted
     if(request.getParameter("submit")!=null){
+        try{
 //        connecting to database
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
@@ -13,6 +14,11 @@
             +"\""+request.getParameter("remarks")+"\",\"open\","
             +"\""+request.getParameter("date")+"\")";
         stm.executeUpdate(query);
+        con.close();
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println(e);
+        }
     }
     response.setStatus(response.SC_MOVED_TEMPORARILY);
     response.setHeader("Location", "./index.jsp");
