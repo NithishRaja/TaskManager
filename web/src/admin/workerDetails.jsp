@@ -24,7 +24,7 @@
     <body>
         <section>
             <h1>Details: </h1>
-            <div class="card-body">
+            <article class="card-body">
                 <label for="name">Name: </label>
                 <input type="text"
                        class="form-control"
@@ -43,7 +43,7 @@
                        id="department"
                        value="<%=dept.getString("department_name")%>"
                        readonly>
-            </div>
+            </article>
             <h1>Tasks: </h1>
                 <%while(task.next()){%>
                     <div class="card">
@@ -69,5 +69,13 @@
                     </div>
                 <%}%>
         </section>
+        <footer class="card-footer">
+            <form method="POST" action="./getExcelSheet.jsp">
+                <input type="submit"
+                       name="get_excel_sheet"
+                       value="Get excel sheet"
+                       class="btn btn-success"/>
+            </form>
+        </footer>
     </body>
 <%@include file="./../../common/foot.jsp"%>
