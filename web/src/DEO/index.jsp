@@ -37,8 +37,7 @@
                               required 
                               name="description"
                               id="description"
-                              placeholder="enter description here"
-                              value="">
+                              placeholder="enter description here">
                     </textarea>
                 </div>
                 <div class="form-group">
@@ -46,8 +45,7 @@
                     <textarea class="form-control"
                               name="remarks"
                               id="remarks"
-                              placeholder="enter remarks here" 
-                              value="">
+                              placeholder="enter remarks here">
                     </textarea>
                 </div>
                 <div class="form-group">
