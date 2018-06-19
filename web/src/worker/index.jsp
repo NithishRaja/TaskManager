@@ -31,15 +31,11 @@
             <label for="assigned-description">Description: </label>
             <textarea class="form-control" 
                       id="assigned-description" 
-                      readonly>
-                <%= task.getString("description") %>
-            </textarea>
+                      readonly><%= task.getString("description") %></textarea>
             <label for="assigned-remarks">Remarks: </label>
             <textarea class="form-control"
                       id="assigned-remarks"
-                      readonly>
-                <%= task.getString("remarks") %>
-            </textarea>                    
+                      readonly><%= task.getString("remarks") %></textarea>                    
             </div>
             <!-- Form to change task status from assigned to inprogress -->
             <div class="card-footer">
@@ -68,15 +64,11 @@
             <label for="inprogress-description">Description: </label>
             <textarea class="form-control"
                       id="inprogress-description"
-                      readonly>
-                <%= task.getString("description") %>
-            </textarea>
+                      readonly><%= task.getString("description") %></textarea>
             <label for="inprogress-remarks">Remarks: </label>
             <textarea class="form-control"
                       id="inprogress-remarks"
-                      readonly>
-                <%= task.getString("remarks") %>
-            </textarea>
+                      readonly><%= task.getString("remarks") %></textarea>
             </div>
             <!-- TODO: add form to upload files regarding the task -->
             <!-- Form to change task status from inprogress to closed -->

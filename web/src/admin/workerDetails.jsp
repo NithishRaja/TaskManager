@@ -51,21 +51,15 @@
                         <label for="description">Description: </label>
                         <textarea class="form-control"
                                   id="description"
-                                  readonly>
-                            <%=task.getString("description")%>
-                        </textarea>
+                                  readonly><%=task.getString("description")%></textarea>
                         <label for="remarks">Remarks: </label>
                         <textarea class="form-control"
                                   id="remarks"
-                                  readonly>
-                            <%=task.getString("remarks")%>
-                        </textarea>
+                                  readonly><%=task.getString("remarks")%></textarea>
                         <label for="status">Status: </label>
                         <textarea class="form-control"
                                   id="status"
-                                  readonly>
-                            <%=task.getString("status")%>
-                        </textarea>
+                                  readonly><%=task.getString("status")%></textarea>
                         <label for="date">Date: </label>
                         <input type="date"
                                class="form-control"

@@ -37,16 +37,14 @@
                               required 
                               name="description"
                               id="description"
-                              placeholder="enter description here">
-                    </textarea>
+                              placeholder="enter description here"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="remarks">Remarks: </label>
                     <textarea class="form-control"
                               name="remarks"
                               id="remarks"
-                              placeholder="enter remarks here">
-                    </textarea>
+                              placeholder="enter remarks here"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="date">Date: </label>

@@ -37,14 +37,12 @@
                 <label for="open-description">Description: </label>
                 <textarea class="form-control"
                           id="open-description"
-                          readonly>
-                    <%= task.getString("description") %>
+                          readonly><%= task.getString("description") %>
                 </textarea>
                 <label for="open-remarks">Remarks: </label>
                 <textarea class="form-control"
                           id="open-remarks"
-                          readonly>
-                    <%= task.getString("remarks") %>
+                          readonly><%= task.getString("remarks") %>
                 </textarea>
                 </div>
                 <div class="card-footer">
@@ -90,15 +88,11 @@
                     <label for="assigned-description">Description: </label>
                     <textarea class="form-control"
                               id="assigned-description"
-                              readonly>
-                        <%= task.getString("description") %>
-                    </textarea>
+                              readonly><%= task.getString("description") %></textarea>
                     <label for="assigned-remarks">Remarks: </label>
                     <textarea class="form-control"
                               id="assigned-remarks"
-                              readonly>
-                        <%= task.getString("remarks") %>
-                    </textarea>
+                              readonly><%= task.getString("remarks") %></textarea>
                 </div>
                 <div class="card-footer">
                     <label>Worker: </label><%= assignedWorker.next()?assignedWorker.getString("name"):"" %>
@@ -127,14 +121,12 @@
                         <label>Description: </label>
                         <textarea class="form-control"
                                   id="inprogress-description"
-                                  readonly>
-                            <%= task.getString("description") %>
+                                  readonly><%= task.getString("description") %>
                         </textarea>
                         <label>Remarks: </label>
                         <textarea class="form-control"
                                   id="inprogress-remarks"
-                                  readonly>
-                            <%= task.getString("remarks") %>
+                                  readonly><%= task.getString("remarks") %>
                         </textarea>
                     </div>
                     <div class="card-footer">
@@ -164,14 +156,12 @@
                         <label for="closed-description">Description: </label>
                         <textarea class="form-control"
                                   id="closed-description"
-                                  readonly>
-                            <%= task.getString("description") %>
+                                  readonly><%= task.getString("description") %>
                         </textarea>
                         <label for="closed-remarks">Remarks: </label>
                         <textarea class="form-control"
                                   id="closed-remarks"
-                                  readonly>
-                            <%= task.getString("remarks") %>
+                                  readonly><%= task.getString("remarks") %>
                         </textarea>
                     </div>
                     <div class="card-footer">
