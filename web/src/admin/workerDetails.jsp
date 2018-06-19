@@ -71,6 +71,7 @@
         </section>
         <footer class="card-footer">
             <form method="POST" action="./getExcelSheet.jsp">
+                <input type="hidden" name="worker" value="<%=worker.getInt("id")%>"/>
                 <input type="submit"
                        name="get_excel_sheet"
                        value="Get excel sheet"
