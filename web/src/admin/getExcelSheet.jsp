@@ -15,7 +15,7 @@
             ResultSet worker = stm.executeQuery("SELECT name FROM worker WHERE id="+request.getParameter("worker"));
             worker.next();
 //            setting file name
-            String filename="F:/Nithish/"+worker.getString("name")+"_tasklist.xls";
+            String filename="F:/Nithish/spreadsheet/"+worker.getString("name")+"_tasklist.xls";
 //            creating new sheet
             HSSFWorkbook hwb=new HSSFWorkbook();
             HSSFSheet sheet =  hwb.createSheet("new sheet");
