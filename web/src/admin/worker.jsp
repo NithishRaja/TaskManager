@@ -8,9 +8,9 @@
             Statement stmt = con.createStatement();
             ResultSet worker = stmt.executeQuery("SELECT id, name, email, department_id FROM worker");
     %>
-    <body class="container-fluid">
+    <body class="container-fluid row">
         <%@include file="./nav.jsp"%>
-        <section class="container">
+        <section class="offset-1 col-8">
         <div class="row">
             <%while(worker.next()){
             %>

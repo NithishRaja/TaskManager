@@ -16,10 +16,10 @@
                 Statement st=con.createStatement();
                 ResultSet worker=st.executeQuery("SELECT id, name FROM worker WHERE status=\"employee\"");
         %>
-    <body class="container-fluid">
+    <body class="container-fluid row">
         <%@include file="./nav.jsp"%>
         <!-- display all tasks categorised according to their status -->
-        <section class="container">
+        <section class="offset-1 col-8">
             <!-- nav for toggling task status -->
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -81,7 +81,7 @@
             %>
             </div>
             <!-- Display tasks that have status as assigned -->
-            <div class="tab-pane fade show active" id="nav-assigned" role="tabpanel" aria-labelledby="nav-home-tab">    
+            <div class="tab-pane fade" id="nav-assigned" role="tabpanel" aria-labelledby="nav-home-tab">    
             <%while(task.next()){
                     if(task.getString("status").equals("assigned")){
 //                    getting department name
@@ -115,7 +115,7 @@
                 %>
                 </div>
             <!-- Display tasks that have status as inprogress -->
-                <div class="tab-pane fade show active" id="nav-inprogress" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane fade" id="nav-inprogress" role="tabpanel" aria-labelledby="nav-home-tab">
                 <%while(task.next()){
                     if(task.getString("status").equals("inprogress")){
 //                    getting department name
@@ -151,7 +151,7 @@
                 %>
                 </div>
             <!-- Display tasks that have status as closed -->
-                <div class="tab-pane fade show active" id="nav-closed" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane fade" id="nav-closed" role="tabpanel" aria-labelledby="nav-home-tab">
                 <%while(task.next()){
                     if(task.getString("status").equals("closed")){
 //                    getting department name

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light navbar-expand bg-success">
+<nav class="navbar flex-column bg-success col-2">
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" href="./index.jsp">Task</a>
