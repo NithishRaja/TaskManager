@@ -20,8 +20,19 @@
         <%@include file="./nav.jsp"%>
         <!-- display all tasks categorised according to their status -->
         <section class="container">
+            <!-- nav for toggling task status -->
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-open-tab" data-toggle="tab" href="#nav-open" role="tab" aria-controls="nav-home" aria-selected="true">Open</a>
+                    <a class="nav-item nav-link" id="nav-asssigned-tab" data-toggle="tab" href="#nav-assigned" role="tab" aria-controls="nav-profile" aria-selected="false">Assigned</a>
+                    <a class="nav-item nav-link" id="nav-inprogress-tab" data-toggle="tab" href="#nav-inprogress" role="tab" aria-controls="nav-contact" aria-selected="false">In Progress</a>
+                    <a class="nav-item nav-link" id="nav-closed-tab" data-toggle="tab" href="#nav-closed" role="tab" aria-controls="nav-contact" aria-selected="false">Closed</a>
+                </div>
+            </nav>
+            <!-- displaying tasks according to status selected -->
+            <div class="tab-content" id="nav-tabContent">
             <!-- Display tasks that have status as open -->
-            <h1>Open tasks: </h1>
+            <div class="tab-pane fade show active" id="nav-open" role="tabpanel" aria-labelledby="nav-home-tab">
             <%while(task.next()){
                 if(task.getString("status").equals("open")){
 //                getting department name
@@ -68,9 +79,10 @@
             <%}}
                 task.beforeFirst();
             %>
+            </div>
             <!-- Display tasks that have status as assigned -->
-            <h1>Assigned tasks: </h1>
-                <%while(task.next()){
+            <div class="tab-pane fade show active" id="nav-assigned" role="tabpanel" aria-labelledby="nav-home-tab">    
+            <%while(task.next()){
                     if(task.getString("status").equals("assigned")){
 //                    getting department name
                     Statement stm = con.createStatement();
@@ -101,8 +113,9 @@
                 <%}}
                     task.beforeFirst();
                 %>
+                </div>
             <!-- Display tasks that have status as inprogress -->
-            <h1>In progress tasks: </h1>
+                <div class="tab-pane fade show active" id="nav-inprogress" role="tabpanel" aria-labelledby="nav-home-tab">
                 <%while(task.next()){
                     if(task.getString("status").equals("inprogress")){
 //                    getting department name
@@ -136,8 +149,9 @@
                 <%}}
                     task.beforeFirst();
                 %>
+                </div>
             <!-- Display tasks that have status as closed -->
-            <h1>Closed tasks: </h1>
+                <div class="tab-pane fade show active" id="nav-closed" role="tabpanel" aria-labelledby="nav-home-tab">
                 <%while(task.next()){
                     if(task.getString("status").equals("closed")){
 //                    getting department name
@@ -170,6 +184,8 @@
                 </div>
                 <%}}
                 %>
+                </div>
+            </div>
         </section>
     </body>
 <%@include file="./../../common/foot.jsp"%>

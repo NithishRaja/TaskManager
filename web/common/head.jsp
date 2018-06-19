@@ -10,5 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./../../static/css/bootstrap.css"/>
+        <script src="./../../static/js/jquery.js"></script>
+        <script src="./../../static/js/bootstrap.js"></script>
         <title>TASK MANAGER</title>
     </head>
