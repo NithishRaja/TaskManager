@@ -32,7 +32,7 @@
             <!-- displaying tasks according to status selected -->
             <div class="tab-content" id="nav-tabContent">
             <!-- Display tasks that have status as open -->
-            <div class="tab-pane fade show active" id="nav-open" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="tab-pane fade show active" id="nav-open" role="tabpanel">
             <%while(task.next()){
                 if(task.getString("status").equals("open")){
 //                getting department name
@@ -81,7 +81,7 @@
             %>
             </div>
             <!-- Display tasks that have status as assigned -->
-            <div class="tab-pane fade" id="nav-assigned" role="tabpanel" aria-labelledby="nav-home-tab">    
+            <div class="tab-pane fade" id="nav-assigned" role="tabpanel">    
             <%while(task.next()){
                     if(task.getString("status").equals("assigned")){
 //                    getting department name
@@ -115,7 +115,7 @@
                 %>
                 </div>
             <!-- Display tasks that have status as inprogress -->
-                <div class="tab-pane fade" id="nav-inprogress" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane fade" id="nav-inprogress" role="tabpanel">
                 <%while(task.next()){
                     if(task.getString("status").equals("inprogress")){
 //                    getting department name
@@ -151,7 +151,7 @@
                 %>
                 </div>
             <!-- Display tasks that have status as closed -->
-                <div class="tab-pane fade" id="nav-closed" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane fade" id="nav-closed" role="tabpanel">
                 <%while(task.next()){
                     if(task.getString("status").equals("closed")){
 //                    getting department name

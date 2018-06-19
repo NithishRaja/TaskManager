@@ -15,7 +15,14 @@
 %>
     <body class="container-fluid">
         <section class="container">
-        <h1>Assigned Tasks</h1>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-assigned-tab" data-toggle="tab" href="#nav-assigned" role="tab" aria-controls="nav-home" aria-selected="true">Assigned</a>
+                    <a class="nav-item nav-link" id="nav-inprogress-tab" data-toggle="tab" href="#nav-inprogress" role="tab" aria-controls="nav-profile" aria-selected="false">In Progress</a>
+                </div>
+            </nav>
+        <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-assigned" role="tabpanel">
         <%while(task.next()){
             if(task.getString("status").equals("assigned")){
                 Statement stm = con.createStatement();
@@ -48,7 +55,8 @@
         <%}}
         task.beforeFirst();
         %>
-        <h1>In Progress Tasks</h1>
+        </div>
+        <div class="tab-pane fade" id="nav-inprogress" role="tabpanel">
         <%while(task.next()){
             if(task.getString("status").equals("inprogress")){
                 Statement stm = con.createStatement();
@@ -75,11 +83,13 @@
             <div class="card-footer">
             <form method="POST" action="./closeTask.jsp">
                 <input type="hidden" name="id" value="<%=task.getInt("id")%>"/>
-                <input class="btn btn-primary" type="submit" name="close_task" value="Close task"/>
+                <input class="btn btn-success" type="submit" name="close_task" value="Close task"/>
             </form>
             </div>
         </div>
-        <%}}%>        
+        <%}}%>
+        </div>
+        </div>
         </section>
     </body>
 <%@include file="./../../common/foot.jsp"%>
