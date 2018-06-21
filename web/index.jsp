@@ -75,15 +75,15 @@
                            id="password" name="password"
                            placeholder="enter password"/>
                 </div>
+                <%
+                    if(flag==0){
+                %>
+                <div class="alert alert-warning">Incorrect email and password</div>
+                <%
+                    }
+                %>
                 <input class="btn btn-success" type="submit" name="submit" value="Login"/>
             </form>
-            <%
-                if(flag==0){
-            %>
-            <div>Incorrect email and password</div>
-            <%
-                }
-            %>
         </section>
     </body>
 </html>

@@ -15,9 +15,12 @@
             +"\""+request.getParameter("date")+"\")";
         stm.executeUpdate(query);
         con.close();
+        session.setAttribute("message", "task inserted successfully");
         }catch(Exception e){
             e.printStackTrace();
             System.out.println(e);
+            session.removeAttribute("message");
+            session.setAttribute("error", "failed to insert task");
         }
     }
     response.setStatus(response.SC_MOVED_TEMPORARILY);
