@@ -14,6 +14,7 @@
                 ResultSet task = stmt.executeQuery("SELECT * FROM tasklist WHERE worker_id="+session.getAttribute("id"));                 
 %>
     <body class="container-fluid">
+        <%@include file="./../common/navbar.jsp" %>
         <section class="container">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">

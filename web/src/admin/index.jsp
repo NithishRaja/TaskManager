@@ -17,6 +17,7 @@
                 ResultSet worker=st.executeQuery("SELECT id, name FROM worker WHERE status=\"employee\"");
         %>
     <body class="container-fluid row">
+        <%@include file="./../common/navbar.jsp" %>
         <%@include file="./nav.jsp"%>
         <!-- display all tasks categorised according to their status -->
         <section class="offset-1 col-8">

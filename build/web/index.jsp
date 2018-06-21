@@ -16,7 +16,12 @@
     <%
 //        flag to toggle if credentials donot match
         int flag=1;
-//      TODO: check if empty fields are submitted
+//        removing session variables if user logged out
+        if(request.getParameter("logout")!=null){
+            session.removeAttribute("name");
+            session.removeAttribute("email");
+            session.removeAttribute("id");
+        }
 //        checking if login form is submitted
         if(request.getParameter("submit")!=null){
             try {

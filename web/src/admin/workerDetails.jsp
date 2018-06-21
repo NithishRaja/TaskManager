@@ -22,6 +22,7 @@
             ResultSet task = st.executeQuery("SELECT * FROM tasklist WHERE worker_id="+worker.getInt("id"));
     %>
     <body>
+        <%@include file="./../common/navbar.jsp" %>
         <section>
             <h1>Details: </h1>
             <article class="card-body">

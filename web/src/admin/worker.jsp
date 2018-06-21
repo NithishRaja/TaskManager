@@ -9,6 +9,7 @@
             ResultSet worker = stmt.executeQuery("SELECT id, name, email, department_id FROM worker");
     %>
     <body class="container-fluid row">
+        <%@include file="./../common/navbar.jsp" %>
         <%@include file="./nav.jsp"%>
         <section class="offset-1 col-8">
         <div class="row">

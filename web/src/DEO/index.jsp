@@ -14,6 +14,7 @@
                 ResultSet rs=stmt.executeQuery("SELECT * FROM department");
         %>
     <body class="container-fluid">
+        <%@include file="./../common/navbar.jsp" %>
         <header>
             <h1>Add new task</h1>
         </header>
