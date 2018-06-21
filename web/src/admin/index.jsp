@@ -16,11 +16,12 @@
                 Statement st=con.createStatement();
                 ResultSet worker=st.executeQuery("SELECT id, name FROM worker WHERE status=\"employee\"");
         %>
-    <body class="container-fluid row">
+    <body class="container-fluid">
         <%@include file="./../common/navbar.jsp" %>
-        <%@include file="./nav.jsp"%>
         <!-- display all tasks categorised according to their status -->
-        <section class="offset-1 col-8">
+        <section class="row container">
+        <%@include file="./nav.jsp"%>
+        <article class="offset-2 col-8">
             <!-- nav for toggling task status -->
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -187,6 +188,7 @@
                 %>
                 </div>
             </div>
+        </article>
         </section>
     </body>
 <%@include file="./../common/foot.jsp"%>

@@ -8,10 +8,11 @@
             Statement stmt = con.createStatement();
             ResultSet worker = stmt.executeQuery("SELECT id, name, email, department_id FROM worker");
     %>
-    <body class="container-fluid row">
+    <body class="container-fluid">
         <%@include file="./../common/navbar.jsp" %>
+        <section class="row container">
         <%@include file="./nav.jsp"%>
-        <section class="offset-1 col-8">
+        <article class="offset-2 col-8">
         <div class="row">
             <%while(worker.next()){
             %>
@@ -23,6 +24,7 @@
             </div>
             <%}%>
         </div>
+        </article>
         </section>
     </body>
 <%@include file="./../common/foot.jsp"%>
