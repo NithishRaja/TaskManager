@@ -1,4 +1,4 @@
-<%@include file="./../../common/head.jsp"%>
+<%@include file="./../common/head.jsp"%>
     <%
         try{
 //            connecting to database
@@ -24,4 +24,4 @@
         </div>
         </section>
     </body>
-<%@include file="./../../common/foot.jsp"%>
+<%@include file="./../common/foot.jsp"%>

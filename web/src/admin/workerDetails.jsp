@@ -1,4 +1,4 @@
-<%@include file="./../../common/head.jsp"%>
+<%@include file="./../common/head.jsp"%>
     <%
         if(request.getParameter("worker")==null){
 //            if worker is not mentioned redirect to index page
@@ -79,4 +79,4 @@
             </form>
         </footer>
     </body>
-<%@include file="./../../common/foot.jsp"%>
+<%@include file="./../common/foot.jsp"%>

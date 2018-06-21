@@ -1,4 +1,4 @@
-<%@include file="./../../common/head.jsp"%>
+<%@include file="./../common/head.jsp"%>
     <%
 //            redirect to login page if not logged in
             if(session.getAttribute("name")==null){
@@ -71,4 +71,4 @@
             </form>
         </section>
     </body>
-<%@include file="./../../common/foot.jsp"%>
+<%@include file="./../common/foot.jsp"%>
