@@ -7,6 +7,9 @@
 //            getting worker info
             Statement stmt = con.createStatement();
             ResultSet worker = stmt.executeQuery("SELECT id, name, email, department_id FROM worker");
+//            getting task list
+            Statement stm = con.createStatement();
+            ResultSet task = stm.executeQuery("SELECT * FROM tasklist");
     %>
     <body class="container-fluid">
         <%@include file="./../common/navbar.jsp" %>
@@ -24,6 +27,9 @@
             </div>
             <%}%>
         </div>
+        <form method="POST" action="./getReport.jsp">
+            <input type="submit" class="btn btn-success" name="get_report" value="Get Report"/>
+        </form>
         </article>
         </section>
     </body>

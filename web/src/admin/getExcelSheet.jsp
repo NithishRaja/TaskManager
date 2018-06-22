@@ -34,7 +34,6 @@
             ++i;
 //            inputing values into sheet
             while(task.next()){
-                System.out.println("counter: "+i);
 //                getting department name
                 Statement s = con.createStatement();
                 ResultSet dept = s.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
@@ -55,6 +54,8 @@
             FileOutputStream fileOut =  new FileOutputStream(filename);
             hwb.write(fileOut);
             fileOut.close();
+//            closing connection
+            con.close();
         }catch(Exception e){
             e.printStackTrace();
             System.out.println(e);
