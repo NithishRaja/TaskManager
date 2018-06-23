@@ -1,11 +1,6 @@
-<nav class="navbar navbar-dark bg-primary">
+<nav class="navbar navbar-dark" style="background-color: rgba(255,165,0,1)">
     <span class="navbar-brand">Task Manager</span>
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link"><%=session.getAttribute("name")%></a>
-        </li>
-    </ul>
-    <form class="form-inline" method="POST" action="./../../index.jsp">
-        <input class="btn btn-success" type="submit" name="logout" value="Logout" />
+    <form class="form-inline" method="POST" action="./../../index.jsp" style="background-color: #ffffff; border-radius: 0.2rem;">
+        <input class="btn btn-outline-danger" type="submit" name="logout" value="Logout" />
     </form>
 </nav>

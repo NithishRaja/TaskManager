@@ -29,7 +29,7 @@
                 Statement stm = con.createStatement();
                 ResultSet dept = stm.executeQuery("SELECT * FROM department WHERE id="+task.getInt("department_id"));
         %>
-        <div class="card">
+        <div class="card" style="margin-top: 2%;">
             <!-- Displaying task details -->
             <div class="card-header">
                 <label class="col-md-3">Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
@@ -49,7 +49,7 @@
             <div class="card-footer">
             <form method="POST" action="./startTask.jsp">
                 <input type="hidden" name="id" value="<%=task.getInt("id")%>"/>
-                <input class="btn btn-success" type="submit" name="start_task" value="Start task"/>
+                <input class="btn btn-outline-success" type="submit" name="start_task" value="Start task"/>
             </form>                
             </div>
         </div>
@@ -63,7 +63,7 @@
                 Statement stm = con.createStatement();
                 ResultSet dept = stm.executeQuery("SELECT * FROM department WHERE id="+task.getInt("department_id"));
         %>
-        <div class="card">
+        <div class="card" style="margin-top: 2%;">
             <!-- Displaying task details -->
             <div class="card-header">
                 <label class="col-md-3">Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
@@ -84,7 +84,7 @@
             <div class="card-footer">
             <form method="POST" action="./closeTask.jsp">
                 <input type="hidden" name="id" value="<%=task.getInt("id")%>"/>
-                <input class="btn btn-success" type="submit" name="close_task" value="Close task"/>
+                <input class="btn btn-outline-success" type="submit" name="close_task" value="Close task"/>
             </form>
             </div>
         </div>

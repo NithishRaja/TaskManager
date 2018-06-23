@@ -68,7 +68,7 @@
                     session.removeAttribute("error");
                     }
                 %>
-                <input class="btn btn-success" type="submit" name="submit" value="add" />
+                <input class="btn btn-outline-success" type="submit" name="submit" value="add" />
             </form>
         </section>
     </body>

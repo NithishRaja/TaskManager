@@ -19,9 +19,8 @@
     <body class="container-fluid">
         <%@include file="./../common/navbar.jsp" %>
         <!-- display all tasks categorised according to their status -->
-        <section class="row container">
-        <%@include file="./nav.jsp"%>
-        <article class="offset-2 col-8">
+        <section class="container">
+        <article>
             <!-- nav for toggling task status -->
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -41,7 +40,7 @@
                 Statement stm = con.createStatement();
                 ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
             %>
-            <div class="card">
+            <div class="card" style="margin-top: 2%;">
                 <div class="card-header">
                     <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
                     <label>Date: </label><%= task.getString("date") %>
@@ -74,7 +73,7 @@
                             %>
                         </select>
                     </div>
-                    <input class="btn btn-success" type="submit" name="submit" value="Asssign Worker" />
+                    <input class="btn btn-outline-success" type="submit" name="submit" value="Asssign Worker" />
                 </form>                    
                 </div>
             </div>
@@ -93,7 +92,7 @@
                     Statement s = con.createStatement();
                     ResultSet assignedWorker = s.executeQuery("SELECT name FROM worker WHERE id="+task.getInt("worker_id"));
                 %>
-                <div class="card">
+                <div class="card" style="margin-top: 2%;">
                 <div class="card-header">
                     <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
                     <label>Date: </label><%= task.getString("date") %>
@@ -127,7 +126,7 @@
                     Statement s = con.createStatement();
                     ResultSet assignedWorker = s.executeQuery("SELECT name FROM worker WHERE id="+task.getInt("worker_id"));
                 %>
-                <div class="card">
+                <div class="card" style="margin-top: 2%;">
                     <div class="card-header">
                         <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
                         <label>Date: </label><%= task.getString("date") %>
@@ -163,7 +162,7 @@
                     Statement s = con.createStatement();
                     ResultSet assignedWorker = s.executeQuery("SELECT name FROM worker WHERE id="+task.getInt("worker_id"));                    
                 %>
-                <div class="card">
+                <div class="card" style="margin-top: 2%;">
                     <div class="card-header">
                         <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
                         <label>Date: </label><%= task.getString("date") %>
@@ -190,5 +189,6 @@
             </div>
         </article>
         </section>
+        <footer><%@include file="./nav.jsp"%></footer>
     </body>
 <%@include file="./../common/foot.jsp"%>

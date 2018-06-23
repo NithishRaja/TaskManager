@@ -21,11 +21,13 @@
             Statement st = con.createStatement();
             ResultSet task = st.executeQuery("SELECT * FROM tasklist WHERE worker_id="+worker.getInt("id"));
     %>
-    <body>
+    <body class="container-fluid">
         <%@include file="./../common/navbar.jsp" %>
-        <section>
-            <h1>Details: </h1>
+        <section class="container">
             <article class="card-body">
+                <header>
+                    <h1>Details: </h1>
+                </header>
                 <label for="name">Name: </label>
                 <input type="text"
                        class="form-control"
@@ -45,9 +47,12 @@
                        value="<%=dept.getString("department_name")%>"
                        readonly>
             </article>
-            <h1>Tasks: </h1>
+            <article>
+                <header>
+                    <h1>Tasks: </h1>
+                </header>
                 <%while(task.next()){%>
-                    <div class="card">
+                    <div class="card" style="margin-bottom: 2%;">
                         <div class="card-body">
                         <label for="description">Description: </label>
                         <textarea class="form-control"
@@ -68,16 +73,18 @@
                                value="<%=task.getString("date")%>"
                                readonly/>
                     </div>
+                </div>
                 <%}%>
+            </article>
+            <article>
+                <form method="POST" action="./getExcelSheet.jsp">
+                    <input type="hidden" name="worker" value="<%=worker.getInt("id")%>"/>
+                    <input type="submit"
+                           name="get_excel_sheet"
+                           value="Get excel sheet"
+                           class="btn btn-outline-warning"/>
+                </form>
+            </article>
         </section>
-        <footer class="card-footer">
-            <form method="POST" action="./getExcelSheet.jsp">
-                <input type="hidden" name="worker" value="<%=worker.getInt("id")%>"/>
-                <input type="submit"
-                       name="get_excel_sheet"
-                       value="Get excel sheet"
-                       class="btn btn-success"/>
-            </form>
-        </footer>
     </body>
 <%@include file="./../common/foot.jsp"%>
