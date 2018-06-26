@@ -18,12 +18,12 @@
         <section class="container">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="nav-assigned-tab" data-toggle="tab" href="#nav-assigned" role="tab" aria-controls="nav-home" aria-selected="true">Assigned</a>
-                    <a class="nav-item nav-link" id="nav-inprogress-tab" data-toggle="tab" href="#nav-inprogress" role="tab" aria-controls="nav-profile" aria-selected="false">In Progress</a>
+                    <a class="nav-item nav-link active" id="nav-inprogress-tab" data-toggle="tab" href="#nav-inprogress" role="tab" aria-controls="nav-profile" aria-selected="false">In Progress</a>
+                    <a class="nav-item nav-link" id="nav-assigned-tab" data-toggle="tab" href="#nav-assigned" role="tab" aria-controls="nav-home" aria-selected="true">Assigned</a>
                 </div>
             </nav>
         <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-assigned" role="tabpanel">
+        <div class="tab-pane fade" id="nav-assigned" role="tabpanel">
         <%while(task.next()){
             if(task.getString("status").equals("assigned")){
                 Statement stm = con.createStatement();
@@ -57,7 +57,7 @@
         task.beforeFirst();
         %>
         </div>
-        <div class="tab-pane fade" id="nav-inprogress" role="tabpanel">
+        <div class="tab-pane fade show active" id="nav-inprogress" role="tabpanel">
         <%while(task.next()){
             if(task.getString("status").equals("inprogress")){
                 Statement stm = con.createStatement();
@@ -80,11 +80,9 @@
                       readonly><%= task.getString("remarks") %></textarea>
             <!-- Form to upload file related to task -->
             <label for="upload-file-form">File: </label>
-            <form id="upload-file-form" method="POST" action="uploadFile.jsp" enctype="multipart/form-data">
+            <form id="upload-file-form" method="POST" action="./uploadFile.jsp" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<%=task.getInt("id")%>"/>
-                <div class="form-group">
-                    <input type="file" name="file" class="form-control" />
-                </div>
+                <input type="file" name="file" size="50" />
                 <input type="submit" name="upload_file" value="Upload File" class="btn-outline-success" />
             </form>
             </div>

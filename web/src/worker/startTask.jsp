@@ -1,5 +1,6 @@
 <%@page import="java.sql.*"%>
 <%
+    System.out.println(request);
 //    checking if start task form is submitted
     if(request.getParameter("start_task")!=null){
         try{
