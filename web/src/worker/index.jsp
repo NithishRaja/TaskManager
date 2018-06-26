@@ -64,7 +64,7 @@
                 ResultSet dept = stm.executeQuery("SELECT * FROM department WHERE id="+task.getInt("department_id"));
         %>
         <div class="card" style="margin-top: 2%;">
-            <!-- Displaying task details -->
+            <!-- Displaying inprogress task details -->
             <div class="card-header">
                 <label class="col-md-3">Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
                 <label class="offset-3 col-md-3">Date: </label><%= task.getString("date") %>
@@ -78,8 +78,16 @@
             <textarea class="form-control"
                       id="inprogress-remarks"
                       readonly><%= task.getString("remarks") %></textarea>
+            <!-- Form to upload file related to task -->
+            <label for="upload-file-form">File: </label>
+            <form id="upload-file-form" method="POST" action="uploadFile.jsp" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<%=task.getInt("id")%>"/>
+                <div class="form-group">
+                    <input type="file" name="file" class="form-control" />
+                </div>
+                <input type="submit" name="upload_file" value="Upload File" class="btn-outline-success" />
+            </form>
             </div>
-            <!-- TODO: add form to upload files regarding the task -->
             <!-- Form to change task status from inprogress to closed -->
             <div class="card-footer">
             <form method="POST" action="./closeTask.jsp">
