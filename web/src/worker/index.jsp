@@ -80,6 +80,15 @@
                       readonly><%= task.getString("remarks") %></textarea>
             <!-- Form to upload file related to task -->
             <label for="upload-file-form">File: </label>
+            <ul class="list-inline">
+            <%
+                Statement st = con.createStatement();
+                ResultSet file = st.executeQuery("SELECT * FROM files WHERE task_id="+task.getInt("id"));
+                while(file.next()){
+            %>
+                <li class="list-inline-item"><%=file.getString("filename")%></li>
+            <%}%>
+            </ul>
             <form id="upload-file-form" method="POST" action="./uploadFile.jsp" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<%=task.getInt("id")%>"/>
                 <input type="file" name="file" size="50" />

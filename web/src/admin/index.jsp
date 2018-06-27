@@ -24,16 +24,16 @@
             <!-- nav for toggling task status -->
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="nav-open-tab" data-toggle="tab" href="#nav-open" role="tab" aria-controls="nav-home" aria-selected="true">Open</a>
+                    <a class="nav-item nav-link active" id="nav-closed-tab" data-toggle="tab" href="#nav-closed" role="tab" aria-controls="nav-contact" aria-selected="false">Closed</a>
+                    <a class="nav-item nav-link" id="nav-open-tab" data-toggle="tab" href="#nav-open" role="tab" aria-controls="nav-home" aria-selected="true">Open</a>
                     <a class="nav-item nav-link" id="nav-asssigned-tab" data-toggle="tab" href="#nav-assigned" role="tab" aria-controls="nav-profile" aria-selected="false">Assigned</a>
                     <a class="nav-item nav-link" id="nav-inprogress-tab" data-toggle="tab" href="#nav-inprogress" role="tab" aria-controls="nav-contact" aria-selected="false">In Progress</a>
-                    <a class="nav-item nav-link" id="nav-closed-tab" data-toggle="tab" href="#nav-closed" role="tab" aria-controls="nav-contact" aria-selected="false">Closed</a>
                 </div>
             </nav>
             <!-- displaying tasks according to status selected -->
             <div class="tab-content" id="nav-tabContent">
             <!-- Display tasks that have status as open -->
-            <div class="tab-pane fade show active" id="nav-open" role="tabpanel">
+            <div class="tab-pane fade" id="nav-open" role="tabpanel">
             <%while(task.next()){
                 if(task.getString("status").equals("open")){
 //                getting department name
@@ -152,7 +152,7 @@
                 %>
                 </div>
             <!-- Display tasks that have status as closed -->
-                <div class="tab-pane fade" id="nav-closed" role="tabpanel">
+                <div class="tab-pane fade show active" id="nav-closed" role="tabpanel">
                 <%while(task.next()){
                     if(task.getString("status").equals("closed")){
 //                    getting department name
@@ -178,6 +178,18 @@
                                   id="closed-remarks"
                                   readonly><%= task.getString("remarks") %>
                         </textarea>
+                        <label for="uploaded-files">Files: </label>
+                        <div id="uploaded-files" class="list-inline">
+                        <%
+                            Statement ss = con.createStatement();
+                            ResultSet file = ss.executeQuery("SELECT filename, id FROM files WHERE task_id="+task.getInt("id"));
+                            while(file.next()){
+                        %>
+                            <span class="list-inline-item">
+                                <%=file.getString("filename")%>
+                            </span>
+                        <%}%>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <label>Worker: </label><%= assignedWorker.next()?assignedWorker.getString("name"):"" %>
