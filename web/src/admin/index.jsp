@@ -9,16 +9,19 @@
 //                connecting to database
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
-//                getting all tasks from database
+//                getting all tasks details from database
                 Statement stmt=con.createStatement();  
-                ResultSet task = stmt.executeQuery("SELECT * FROM tasklist");
+                ResultSet task = stmt.executeQuery("SELECT * FROM tasklist, department, worker WHERE department.id=tasklist.department_id AND worker.id=tasklist.worker_id");
+//                getting open tasks
+                Statement stmts = con.createStatement();
+                ResultSet openTask = stmts.executeQuery("SELECT * FROM tasklist, department WHERE department.id=tasklist.department_id AND tasklist.status=\"open\"");
 //                getting workers from database
                 Statement st=con.createStatement();
                 ResultSet worker=st.executeQuery("SELECT id, name FROM worker WHERE status=\"employee\"");
         %>
     <body class="container-fluid">
         <%@include file="./../common/navbar.jsp" %>
-        <!-- display all tasks categorised according to their status -->
+        <!-- display all tasks categorized according to their status -->
         <section class="container">
         <article>
             <!-- nav for toggling task status -->
@@ -34,32 +37,29 @@
             <div class="tab-content" id="nav-tabContent">
             <!-- Display tasks that have status as open -->
             <div class="tab-pane fade" id="nav-open" role="tabpanel">
-            <%while(task.next()){
-                if(task.getString("status").equals("open")){
-//                getting department name
-                Statement stm = con.createStatement();
-                ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
+            <%while(openTask.next()){
+                if(openTask.getString("tasklist.status").equals("open")){
             %>
             <div class="card" style="margin-top: 2%;">
                 <div class="card-header">
-                    <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
-                    <label>Date: </label><%= task.getString("date") %>
+                    <label>Department: </label><%= openTask.getString("department_name") %>
+                    <label>Date: </label><%= openTask.getString("date") %>
                 </div>
                 <div class="card-body">
                 <label for="open-description">Description: </label>
                 <textarea class="form-control"
                           id="open-description"
-                          readonly><%= task.getString("description") %>
+                          readonly><%= openTask.getString("description") %>
                 </textarea>
                 <label for="open-remarks">Remarks: </label>
                 <textarea class="form-control"
                           id="open-remarks"
-                          readonly><%= task.getString("remarks") %>
+                          readonly><%= openTask.getString("remarks") %>
                 </textarea>
                 </div>
                 <div class="card-footer">
                 <form method="POST" action="./assignWorker.jsp">
-                    <input type="hidden" name="task" value="<%=task.getInt("id")%>"/>
+                    <input type="hidden" name="task" value="<%=openTask.getInt("id")%>"/>
                     <div class="form-group">
                         <label for="worker">Worker: </label>
                         <select class="form-control"
@@ -78,23 +78,17 @@
                 </div>
             </div>
             <%}}
-                task.beforeFirst();
+                openTask.beforeFirst();
             %>
             </div>
             <!-- Display tasks that have status as assigned -->
             <div class="tab-pane fade" id="nav-assigned" role="tabpanel">    
             <%while(task.next()){
-                    if(task.getString("status").equals("assigned")){
-//                    getting department name
-                    Statement stm = con.createStatement();
-                    ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
-//                    getting worker name                    
-                    Statement s = con.createStatement();
-                    ResultSet assignedWorker = s.executeQuery("SELECT name FROM worker WHERE id="+task.getInt("worker_id"));
+                    if(task.getString("tasklist.status").equals("assigned")){
                 %>
                 <div class="card" style="margin-top: 2%;">
                 <div class="card-header">
-                    <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
+                    <label>Department: </label><%= task.getString("department_name") %>
                     <label>Date: </label><%= task.getString("date") %>
                 </div>
                 <div class="card-body">
@@ -108,7 +102,7 @@
                               readonly><%= task.getString("remarks") %></textarea>
                 </div>
                 <div class="card-footer">
-                    <label>Worker: </label><%= assignedWorker.next()?assignedWorker.getString("name"):"" %>
+                    <label>Worker: </label><%= task.getString("worker.name") %>
                 </div>
                 </div>
                 <%}}
@@ -118,17 +112,11 @@
             <!-- Display tasks that have status as inprogress -->
                 <div class="tab-pane fade" id="nav-inprogress" role="tabpanel">
                 <%while(task.next()){
-                    if(task.getString("status").equals("inprogress")){
-//                    getting department name
-                    Statement stm = con.createStatement();
-                    ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
-//                    getting worker name
-                    Statement s = con.createStatement();
-                    ResultSet assignedWorker = s.executeQuery("SELECT name FROM worker WHERE id="+task.getInt("worker_id"));
+                    if(task.getString("tasklist.status").equals("inprogress")){
                 %>
                 <div class="card" style="margin-top: 2%;">
                     <div class="card-header">
-                        <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
+                        <label>Department: </label><%= task.getString("department_name") %>
                         <label>Date: </label><%= task.getString("date") %>
                     </div>    
                     <div class="card-body">
@@ -144,7 +132,7 @@
                         </textarea>
                     </div>
                     <div class="card-footer">
-                        <label>Worker: </label><%= assignedWorker.next()?assignedWorker.getString("name"):"" %>
+                        <label>Worker: </label><%= task.getString("worker.name") %>
                     </div>
                 </div>
                 <%}}
@@ -154,17 +142,11 @@
             <!-- Display tasks that have status as closed -->
                 <div class="tab-pane fade show active" id="nav-closed" role="tabpanel">
                 <%while(task.next()){
-                    if(task.getString("status").equals("closed")){
-//                    getting department name
-                    Statement stm = con.createStatement();
-                    ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
-//                    getting worker name
-                    Statement s = con.createStatement();
-                    ResultSet assignedWorker = s.executeQuery("SELECT name FROM worker WHERE id="+task.getInt("worker_id"));                    
+                    if(task.getString("tasklist.status").equals("closed")){
                 %>
                 <div class="card" style="margin-top: 2%;">
                     <div class="card-header">
-                        <label>Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
+                        <label>Department: </label><%= task.getString("department_name") %>
                         <label>Date: </label><%= task.getString("date") %>
                     </div>
                     <div class="card-body">
@@ -192,7 +174,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <label>Worker: </label><%= assignedWorker.next()?assignedWorker.getString("name"):"" %>
+                        <label>Worker: </label><%= task.getString("worker.name") %>
                     </div>
                 </div>
                 <%}}

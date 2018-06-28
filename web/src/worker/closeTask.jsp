@@ -42,14 +42,10 @@
 //            getting all admin email
             Statement st = con.createStatement();
             ResultSet admin = st.executeQuery("SELECT * FROM worker WHERE status=\"admin\"");
-//            getting task details
+//            getting task details and worker name
             Statement s = con.createStatement();
-            ResultSet task = s.executeQuery("SELECT * FROM tasklist WHERE id="+request.getParameter("id"));
+            ResultSet task = s.executeQuery("SELECT * FROM tasklist, worker WHERE tasklist.id="+request.getParameter("id")+" AND worker.id=tasklist.worker_id");
             task.next();
-//            getting worker name
-            Statement ss = con.createStatement();
-            ResultSet worker = ss.executeQuery("SELECT * FROM worker WHERE id="+task.getInt("worker_id"));
-            worker.next();
 //            sending mail to all admin
             while(admin.next()){
 //                Create a default MimeMessage object.
@@ -61,7 +57,7 @@
 //                Set Subject: header field
                 message.setSubject("task closed");
 //                Now set the actual message
-                message.setText("A task has been closed by "+worker.getString("name"));
+                message.setText("A task has been closed by "+task.getString("worker.name"));
 //                Send message
                 Transport.send(message);
             }            

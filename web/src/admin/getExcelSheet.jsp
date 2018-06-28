@@ -10,7 +10,7 @@
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
             Statement stmt = con.createStatement();
-            ResultSet task = stmt.executeQuery("SELECT * FROM tasklist WHERE worker_id="+request.getParameter("worker"));
+            ResultSet task = stmt.executeQuery("SELECT * FROM tasklist, department WHERE tasklist.worker_id="+request.getParameter("worker")+" AND department.id=tasklist.department_id");
             Statement stm = con.createStatement();
             ResultSet worker = stm.executeQuery("SELECT name FROM worker WHERE id="+request.getParameter("worker"));
             worker.next();
@@ -34,15 +34,11 @@
             ++i;
 //            inputing values into sheet
             while(task.next()){
-//                getting department name
-                Statement s = con.createStatement();
-                ResultSet dept = s.executeQuery("SELECT department_name FROM department WHERE id="+task.getInt("department_id"));
-                dept.next();
 //                creating row for task
                 HSSFRow row=   sheet.createRow((short)i);
 //                entering values into cells
                 row.createCell((short) 0).setCellValue(i);
-                row.createCell((short) 1).setCellValue(dept.getString("department_name"));
+                row.createCell((short) 1).setCellValue(task.getString("department_name"));
                 row.createCell((short) 2).setCellValue(task.getString("description"));
                 row.createCell((short) 3).setCellValue(task.getString("remarks"));
                 row.createCell((short) 4).setCellValue(task.getString("status"));

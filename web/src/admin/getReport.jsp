@@ -11,10 +11,10 @@
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
 //            getting inprogress tasks 
             Statement stmt1 = con.createStatement();
-            ResultSet inprogressTask = stmt1.executeQuery("SELECT * FROM tasklist WHERE status=\"inprogress\"");
+            ResultSet inprogressTask = stmt1.executeQuery("SELECT * FROM tasklist, department, worker WHERE tasklist.status=\"inprogress\" AND department.id=tasklist.department_id AND worker.id=tasklist.worker_id");
 //            getting closed tasks 
             Statement stmt2 = con.createStatement();
-            ResultSet closedTask = stmt2.executeQuery("SELECT * FROM tasklist WHERE status=\"closed\"");            
+            ResultSet closedTask = stmt2.executeQuery("SELECT * FROM tasklist, department, worker WHERE tasklist.status=\"closed\" AND department.id=tasklist.department_id AND worker.id=tasklist.worker_id");            
 //            setting file name
             String filename="F:/Nithish/spreadsheet/report.xls";
 //            creating new sheet
@@ -41,22 +41,14 @@
             ++i;
 //            inputing values into sheet
             while(inprogressTask.next()){
-//                getting department name
-                Statement stm = con.createStatement();
-                ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+inprogressTask.getInt("department_id"));
-                dept.next();
-//                getting worker name
-                Statement st = con.createStatement();
-                ResultSet worker = st.executeQuery("SELECT name FROM worker WHERE id="+inprogressTask.getInt("worker_id"));
-                worker.next();
 //                creating row for task
                 HSSFRow row=   sheet.createRow((short)i);
 //                entering values into cells
                 row.createCell((short) 0).setCellValue(i);
-                row.createCell((short) 1).setCellValue(dept.getString("department_name"));
+                row.createCell((short) 1).setCellValue(inprogressTask.getString("department_name"));
                 row.createCell((short) 2).setCellValue(inprogressTask.getString("description"));
                 row.createCell((short) 3).setCellValue(inprogressTask.getString("remarks"));
-                row.createCell((short) 4).setCellValue(worker.getString("name"));
+                row.createCell((short) 4).setCellValue(inprogressTask.getString("worker.name"));
                 row.createCell((short) 5).setCellValue(inprogressTask.getString("date"));
 //                updating row counter
                 ++i;                
@@ -80,22 +72,14 @@
             ++i;
 //            inputing values into sheet
             while(closedTask.next()){
-//                getting department name
-                Statement stm = con.createStatement();
-                ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+closedTask.getInt("department_id"));
-                dept.next();
-//                getting worker name
-                Statement st = con.createStatement();
-                ResultSet worker = st.executeQuery("SELECT name FROM worker WHERE id="+closedTask.getInt("worker_id"));
-                worker.next();
 //                creating row for task
                 HSSFRow row=   sheet.createRow((short)i);
 //                entering values into cells
                 row.createCell((short) 0).setCellValue(i);
-                row.createCell((short) 1).setCellValue(dept.getString("department_name"));
+                row.createCell((short) 1).setCellValue(closedTask.getString("department_name"));
                 row.createCell((short) 2).setCellValue(closedTask.getString("description"));
                 row.createCell((short) 3).setCellValue(closedTask.getString("remarks"));
-                row.createCell((short) 4).setCellValue(worker.getString("name"));
+                row.createCell((short) 4).setCellValue(closedTask.getString("worker.name"));
                 row.createCell((short) 5).setCellValue(closedTask.getString("date"));
 //                updating row counter
                 ++i;                

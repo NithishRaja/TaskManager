@@ -11,7 +11,7 @@
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
 //                get current worker tasks from database
                 Statement stmt = con.createStatement();
-                ResultSet task = stmt.executeQuery("SELECT * FROM tasklist WHERE worker_id="+session.getAttribute("id"));                 
+                ResultSet task = stmt.executeQuery("SELECT * FROM tasklist, department WHERE tasklist.worker_id="+session.getAttribute("id")+" AND department.id=tasklist.department_id");                 
 %>
     <body class="container-fluid">
         <%@include file="./../common/navbar.jsp" %>
@@ -25,14 +25,11 @@
         <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade" id="nav-assigned" role="tabpanel">
         <%while(task.next()){
-            if(task.getString("status").equals("assigned")){
-                Statement stm = con.createStatement();
-                ResultSet dept = stm.executeQuery("SELECT * FROM department WHERE id="+task.getInt("department_id"));
         %>
         <div class="card" style="margin-top: 2%;">
             <!-- Displaying task details -->
             <div class="card-header">
-                <label class="col-md-3">Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
+                <label class="col-md-3">Department: </label><%= task.getString("department_name") %>
                 <label class="offset-3 col-md-3">Date: </label><%= task.getString("date") %>
             </div>
             <div class="card-body">
@@ -53,20 +50,17 @@
             </form>                
             </div>
         </div>
-        <%}}
+        <%}
         task.beforeFirst();
         %>
         </div>
         <div class="tab-pane fade show active" id="nav-inprogress" role="tabpanel">
         <%while(task.next()){
-            if(task.getString("status").equals("inprogress")){
-                Statement stm = con.createStatement();
-                ResultSet dept = stm.executeQuery("SELECT * FROM department WHERE id="+task.getInt("department_id"));
         %>
         <div class="card" style="margin-top: 2%;">
             <!-- Displaying inprogress task details -->
             <div class="card-header">
-                <label class="col-md-3">Department: </label><%= dept.next()?dept.getString("department_name"):"" %>
+                <label class="col-md-3">Department: </label><%= task.getString("department_name") %>
                 <label class="offset-3 col-md-3">Date: </label><%= task.getString("date") %>
             </div>
             <div class="card-body">
@@ -103,7 +97,7 @@
             </form>
             </div>
         </div>
-        <%}}%>
+        <%}%>
         </div>
         </div>
         </section>

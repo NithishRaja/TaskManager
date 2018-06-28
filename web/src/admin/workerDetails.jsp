@@ -11,15 +11,11 @@
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
 //            getting current worker details
             Statement stmt = con.createStatement();
-            ResultSet worker = stmt.executeQuery("SELECT * FROM worker WHERE id="+request.getParameter("worker"));
+            ResultSet worker = stmt.executeQuery("SELECT * FROM worker, department WHERE worker.id="+request.getParameter("worker")+" AND department.id=worker.department_id");
             worker.next();
-//            getting department name of current worker
-            Statement stm = con.createStatement();
-            ResultSet dept = stm.executeQuery("SELECT department_name FROM department WHERE id="+worker.getInt("department_id"));
-            dept.next();
 //            getting task of current worker
             Statement st = con.createStatement();
-            ResultSet task = st.executeQuery("SELECT * FROM tasklist WHERE worker_id="+worker.getInt("id"));
+            ResultSet task = st.executeQuery("SELECT * FROM tasklist WHERE worker_id="+worker.getInt("worker.id"));
     %>
     <body class="container-fluid">
         <%@include file="./../common/navbar.jsp" %>
@@ -44,7 +40,7 @@
                 <input type="text"
                        class="form-control"
                        id="department"
-                       value="<%=dept.getString("department_name")%>"
+                       value="<%=worker.getString("department_id")%>"
                        readonly>
             </article>
             <article>
