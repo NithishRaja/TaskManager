@@ -15,13 +15,16 @@
 %>
     <body>
         <%@include file="./../common/navbar.jsp" %>
-        <section class="container">
+        <section class="card">
+        <div class="card-header">
             <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-inprogress-tab" data-toggle="tab" href="#nav-inprogress" role="tab" aria-controls="nav-profile" aria-selected="false">In Progress</a>
                     <a class="nav-item nav-link" id="nav-assigned-tab" data-toggle="tab" href="#nav-assigned" role="tab" aria-controls="nav-home" aria-selected="true">Assigned</a>
                 </div>
             </nav>
+        </div>
+        <div class="card-body">
         <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade" id="nav-assigned" role="tabpanel">
         <%while(task.next()){
@@ -98,6 +101,7 @@
             </div>
         </div>
         <%}%>
+        </div>
         </div>
         </div>
         </section>

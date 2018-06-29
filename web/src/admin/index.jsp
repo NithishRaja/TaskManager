@@ -22,17 +22,19 @@
     <body>
         <%@include file="./../common/navbar.jsp" %>
         <!-- display all tasks categorized according to their status -->
-        <section class="container">
-        <article>
+        <section class="card">
             <!-- nav for toggling task status -->
+        <div class="card-header">
             <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-closed-tab" data-toggle="tab" href="#nav-closed" role="tab" aria-controls="nav-contact" aria-selected="false">Closed</a>
                     <a class="nav-item nav-link" id="nav-open-tab" data-toggle="tab" href="#nav-open" role="tab" aria-controls="nav-home" aria-selected="true">Open</a>
                     <a class="nav-item nav-link" id="nav-asssigned-tab" data-toggle="tab" href="#nav-assigned" role="tab" aria-controls="nav-profile" aria-selected="false">Assigned</a>
                     <a class="nav-item nav-link" id="nav-inprogress-tab" data-toggle="tab" href="#nav-inprogress" role="tab" aria-controls="nav-contact" aria-selected="false">In Progress</a>
                 </div>
             </nav>
+        </div>
+        <div class="card-body">
             <!-- displaying tasks according to status selected -->
             <div class="tab-content" id="nav-tabContent">
             <!-- Display tasks that have status as open -->
@@ -181,8 +183,8 @@
                 %>
                 </div>
             </div>
-        </article>
+        </div>
+        <footer class="card-footer"><%@include file="./nav.jsp"%></footer>
         </section>
-        <footer><%@include file="./nav.jsp"%></footer>
     </body>
 <%@include file="./../common/foot.jsp"%>
