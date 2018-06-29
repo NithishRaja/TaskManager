@@ -19,7 +19,7 @@
                 Statement st=con.createStatement();
                 ResultSet worker=st.executeQuery("SELECT id, name FROM worker WHERE status=\"employee\"");
         %>
-    <body class="container-fluid">
+    <body>
         <%@include file="./../common/navbar.jsp" %>
         <!-- display all tasks categorized according to their status -->
         <section class="container">

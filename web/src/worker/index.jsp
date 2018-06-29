@@ -13,7 +13,7 @@
                 Statement stmt = con.createStatement();
                 ResultSet task = stmt.executeQuery("SELECT * FROM tasklist, department WHERE tasklist.worker_id="+session.getAttribute("id")+" AND department.id=tasklist.department_id");                 
 %>
-    <body class="container-fluid">
+    <body>
         <%@include file="./../common/navbar.jsp" %>
         <section class="container">
             <nav>
