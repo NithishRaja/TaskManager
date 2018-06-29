@@ -42,8 +42,8 @@
             %>
             <div class="card" style="margin-top: 2%;">
                 <div class="card-header">
-                    <label>Department: </label><%= openTask.getString("department_name") %>
-                    <label>Date: </label><%= openTask.getString("date") %>
+                    <label class="col-3">Department: </label><%= openTask.getString("department_name") %>
+                    <label class="offset-3 col-3">Date: </label><%= openTask.getString("date") %>
                 </div>
                 <div class="card-body">
                 <label for="open-description">Description: </label>
@@ -88,8 +88,8 @@
                 %>
                 <div class="card" style="margin-top: 2%;">
                 <div class="card-header">
-                    <label>Department: </label><%= task.getString("department_name") %>
-                    <label>Date: </label><%= task.getString("date") %>
+                    <label class="col-3">Department: </label><%= task.getString("department_name") %>
+                    <label class="offset-3 col-3">Date: </label><%= task.getString("date") %>
                 </div>
                 <div class="card-body">
                     <label for="assigned-description">Description: </label>
@@ -116,8 +116,8 @@
                 %>
                 <div class="card" style="margin-top: 2%;">
                     <div class="card-header">
-                        <label>Department: </label><%= task.getString("department_name") %>
-                        <label>Date: </label><%= task.getString("date") %>
+                        <label class="col-3">Department: </label><%= task.getString("department_name") %>
+                        <label class="offset-3 col-3">Date: </label><%= task.getString("date") %>
                     </div>    
                     <div class="card-body">
                         <label>Description: </label>
@@ -146,8 +146,8 @@
                 %>
                 <div class="card" style="margin-top: 2%;">
                     <div class="card-header">
-                        <label>Department: </label><%= task.getString("department_name") %>
-                        <label>Date: </label><%= task.getString("date") %>
+                        <label class="col-3">Department: </label><%= task.getString("department_name") %>
+                        <label class="offset-3 col-3">Date: </label><%= task.getString("date") %>
                     </div>
                     <div class="card-body">
                         <label for="closed-description">Description: </label>

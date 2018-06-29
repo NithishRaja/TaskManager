@@ -14,6 +14,13 @@
         <title>TASK MANAGER</title>
     </head>
     <%
+        try{
+//        connecting to database
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");            
+//        getting department details
+        Statement stm = con.createStatement();
+        ResultSet dept = stm.executeQuery("SELECT * FROM department");
 //        flag to toggle if credentials donot match
         int flag=1;
 //        removing session variables if user logged out
@@ -24,38 +31,29 @@
         }
 //        checking if login form is submitted
         if(request.getParameter("submit")!=null){
-            try {
-//                connecting to database
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
-                Statement stmt=con.createStatement();  
-//                getting password for email
-                ResultSet rs=stmt.executeQuery("SELECT * FROM worker WHERE email=\""+request.getParameter("email")+"\"");
-//                checking password
-                if(rs.next()&&request.getParameter("password").equals(rs.getString("password"))){
-                    System.out.println("login success");
-                    System.out.println(rs.getString("status"));
-                    session.setAttribute("name", rs.getString("name"));
-                    session.setAttribute("email", rs.getString("email"));
-                    session.setAttribute("id", rs.getInt("id"));
-                    if(rs.getString("status").equals("DEO")){
-                        response.setStatus(response.SC_MOVED_TEMPORARILY);
-                        response.setHeader("Location", "./src/DEO/"); 
-                    }else if(rs.getString("status").equals("admin")){
-                        response.setStatus(response.SC_MOVED_TEMPORARILY);
-                        response.setHeader("Location", "./src/admin/"); 
-                    }else if(rs.getString("status").equals("employee")){
-                        response.setStatus(response.SC_MOVED_TEMPORARILY);
-                        response.setHeader("Location", "./src/worker/"); 
-                    }
-                }else{
-                    flag=0;
+            Statement stmt=con.createStatement();  
+//            getting password for email
+            ResultSet rs=stmt.executeQuery("SELECT * FROM worker WHERE email=\""+request.getParameter("email")+"\"");
+//            checking password
+            if(rs.next()&&request.getParameter("password").equals(rs.getString("password"))){
+                System.out.println("login success");
+                System.out.println(rs.getString("status"));
+                session.setAttribute("name", rs.getString("name"));
+                session.setAttribute("email", rs.getString("email"));
+                session.setAttribute("id", rs.getInt("id"));
+                if(rs.getString("status").equals("DEO")){
+                    response.setStatus(response.SC_MOVED_TEMPORARILY);
+                    response.setHeader("Location", "./src/DEO/"); 
+                }else if(rs.getString("status").equals("admin")){
+                    response.setStatus(response.SC_MOVED_TEMPORARILY);
+                    response.setHeader("Location", "./src/admin/"); 
+                }else if(rs.getString("status").equals("employee")){
+                    response.setStatus(response.SC_MOVED_TEMPORARILY);
+                    response.setHeader("Location", "./src/worker/"); 
                 }
-//                closing database connection
-                con.close();  
-            }catch(SQLException e) {
-                out.println("SQLException caught: " +e.getMessage());
-            }
+            }else{
+                flag=0;
+            }           
         }
     %>
     <body class="container">
@@ -64,6 +62,61 @@
                 Login
             </h1>
         </header>
+        <!-- Task entry section -->
+        <section class="container">
+            <form method="POST" action="./src/DEO/newTask.jsp">
+                <div class="form-group">
+                    <label for="department">Department: </label>
+                    <select class="form-control"
+                            name="department"
+                            id="department">
+                        <%while(dept.next()){%>
+                        <option value="<%= dept.getInt("id") %>">
+                            <%= dept.getString("department_name") %>
+                        </option>
+                        <%}%>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description: </label>
+                    <textarea class="form-control"
+                              required 
+                              name="description"
+                              id="description"
+                              placeholder="enter description here"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="remarks">Remarks: </label>
+                    <textarea class="form-control"
+                              name="remarks"
+                              id="remarks"
+                              placeholder="enter remarks here"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date: </label>
+                    <input class="form-control"
+                           required 
+                           type="date" 
+                           name="date"
+                           id="date"/>
+                </div>
+                <%
+                    if(session.getAttribute("message")!=null){
+                %>
+                    <div class="alert alert-info"><%=session.getAttribute("message")%></div>
+                <%  
+                    session.removeAttribute("message");
+                    }else if(session.getAttribute("error")!=null){
+                %>
+                    <div class="alert alert-warning"><%=session.getAttribute("error")%></div>
+                <%        
+                    session.removeAttribute("error");
+                    }
+                %>
+                <input class="btn btn-outline-success" type="submit" name="submit" value="add" />
+            </form>
+        </section>
+        <!-- Login section -->
         <section>
             <form method="POST" action="./index.jsp">
                 <div class="form-group">
@@ -91,4 +144,12 @@
             </form>
         </section>
     </body>
+    <%
+//            closing database connection
+            con.close();         
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println(e);
+        }
+    %>
 </html>

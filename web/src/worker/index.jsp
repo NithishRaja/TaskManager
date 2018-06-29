@@ -29,8 +29,8 @@
         <div class="card" style="margin-top: 2%;">
             <!-- Displaying task details -->
             <div class="card-header">
-                <label class="col-md-3">Department: </label><%= task.getString("department_name") %>
-                <label class="offset-3 col-md-3">Date: </label><%= task.getString("date") %>
+                <label class="col-3">Department: </label><%= task.getString("department_name") %>
+                <label class="offset-3 col-3">Date: </label><%= task.getString("date") %>
             </div>
             <div class="card-body">
             <label for="assigned-description">Description: </label>
@@ -60,8 +60,8 @@
         <div class="card" style="margin-top: 2%;">
             <!-- Displaying inprogress task details -->
             <div class="card-header">
-                <label class="col-md-3">Department: </label><%= task.getString("department_name") %>
-                <label class="offset-3 col-md-3">Date: </label><%= task.getString("date") %>
+                <label class="col-3">Department: </label><%= task.getString("department_name") %>
+                <label class="offset-3 col-3">Date: </label><%= task.getString("date") %>
             </div>
             <div class="card-body">
             <label for="inprogress-description">Description: </label>
