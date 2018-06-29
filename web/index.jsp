@@ -58,11 +58,12 @@
     %>
     <body class="container">
         <!-- Task entry section -->
-        <section class="container row">
-        <article class="col-6">
-            <header>
-                <h1>Task entry</h1>
-            </header>
+        <section class="card-deck">
+        <article class="card">
+            <div class="card-header">
+                <h1 class="card-title">Task entry</h1>
+            </div>
+            <div class="card-body">
             <form method="POST" action="./src/DEO/newTask.jsp">
                 <div class="form-group">
                     <label for="department">Department: </label>
@@ -114,12 +115,14 @@
                 %>
                 <input class="btn btn-outline-success" type="submit" name="submit" value="add" />
             </form>
+            </div>
         </article>
         <!-- Login section -->
-        <article class="col-6">
-            <header>
-                <h1>Login</h1>
-            </header>
+        <article class="card">
+            <div class="card-header">
+                <h1 class="card-title">Login</h1>
+            </div>
+            <div class="card-body">
             <form method="POST" action="./index.jsp">
                 <div class="form-group">
                     <label for="email">Email: </label>
@@ -144,6 +147,7 @@
                 %>
                 <input class="btn btn-outline-success" type="submit" name="submit" value="Login"/>
             </form>
+            </div>
         </article>
         </section>
     </body>
