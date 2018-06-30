@@ -33,21 +33,19 @@
         if(request.getParameter("submit")!=null){
             Statement stmt=con.createStatement();  
 //            getting password for email
-            ResultSet rs=stmt.executeQuery("SELECT * FROM worker WHERE email=\""+request.getParameter("email")+"\"");
+            ResultSet worker=stmt.executeQuery("SELECT * FROM worker, department WHERE worker.email=\""+request.getParameter("email")+"\"");
 //            checking password
-            if(rs.next()&&request.getParameter("password").equals(rs.getString("password"))){
+            if(worker.next()&&request.getParameter("password").equals(worker.getString("password"))){
                 System.out.println("login success");
-                System.out.println(rs.getString("status"));
-                session.setAttribute("name", rs.getString("name"));
-                session.setAttribute("email", rs.getString("email"));
-                session.setAttribute("id", rs.getInt("id"));
-                if(rs.getString("status").equals("DEO")){
-                    response.setStatus(response.SC_MOVED_TEMPORARILY);
-                    response.setHeader("Location", "./src/DEO/"); 
-                }else if(rs.getString("status").equals("admin")){
+                System.out.println(worker.getString("status"));
+                session.setAttribute("name", worker.getString("name"));
+                session.setAttribute("email", worker.getString("email"));
+                session.setAttribute("id", worker.getInt("id"));
+                session.setAttribute("department_name", worker.getString("department_name"));
+                if(worker.getString("status").equals("admin")){
                     response.setStatus(response.SC_MOVED_TEMPORARILY);
                     response.setHeader("Location", "./src/admin/"); 
-                }else if(rs.getString("status").equals("employee")){
+                }else if(worker.getString("status").equals("employee")){
                     response.setStatus(response.SC_MOVED_TEMPORARILY);
                     response.setHeader("Location", "./src/worker/"); 
                 }
