@@ -56,7 +56,14 @@
             }           
         }
     %>
-    <body class="container">
+    <body>
+        <nav class="navbar navbar-dark" style="background-color: rgba(255,165,0,1)">
+            <a class="navbar-brand" href="https://clri.org/">
+                <img src="./static/images/clriLogo.png" width="30" height="30" alt="logo" />
+                CSIR-Central Leather Research Institute
+             </a>
+        </nav>
+        <main class="container" style="margin-top: 2%;">
         <!-- Task entry section -->
         <section class="card-deck">
         <article class="card">
@@ -150,6 +157,7 @@
             </div>
         </article>
         </section>
+        </main>
     </body>
     <%
 //            closing database connection
