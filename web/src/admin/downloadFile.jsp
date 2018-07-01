@@ -11,14 +11,22 @@
             Statement stmt = con.createStatement();
             ResultSet file = stmt.executeQuery("SELECT * FROM files WHERE id="+request.getParameter("file")); 
             file.next();
-//            initializing source file
-            File source = new File(file.getString("filepath")+file.getString("filename"));
-//            getting home directory
-            String home = System.getProperty("user.home");
-//            initializing dest 
-            File dest = new File(home+"/Downloads/");
-//            copying source file into downloads directory
-            FileUtils.copyFileToDirectory(source, dest);
+//            seetting contentType and header
+            response.setContentType("application/octet-stream");
+            response.setHeader("Content-Disposition", "attachment; filename=\""+file.getString("filename")+"\"");
+//            initializing PrintWriter
+            PrintWriter output = response.getWriter();
+//            initializing output stream
+            FileInputStream fileInputStream = new FileInputStream(file.getString("filepath")+file.getString("filename"));
+//            writing file
+            int i;
+            while ((i = fileInputStream.read()) != -1) {
+		output.write(i);
+            }
+//            closing FileInputStream
+            fileInputStream.close();
+//            closing PrintWriter
+            output.close();
 //            closing connection
             con.close();
         }catch(Exception e){
