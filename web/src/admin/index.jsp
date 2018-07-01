@@ -163,17 +163,17 @@
                                   readonly><%= task.getString("remarks") %>
                         </textarea>
                         <label for="uploaded-files">Files: </label>
-                        <div id="uploaded-files" class="list-inline">
+                        <ul id="uploaded-files" class="list-inline">
                         <%
                             Statement ss = con.createStatement();
                             ResultSet file = ss.executeQuery("SELECT filename, id FROM files WHERE task_id="+task.getInt("id"));
                             while(file.next()){
                         %>
-                            <span class="list-inline-item">
-                                <%=file.getString("filename")%>
-                            </span>
+                            <li class="list-inline-item">
+                                <a href="./downloadFile.jsp?file=<%=file.getInt("id")%>" class="btn btn-outline-info"><%=file.getString("filename")%></a>
+                            </li>
                         <%}%>
-                        </div>
+                        </ul>
                     </div>
                     <div class="card-footer">
                         <label>Worker: </label><%= task.getString("worker.name") %>

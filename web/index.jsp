@@ -36,15 +36,15 @@
             ResultSet worker=stmt.executeQuery("SELECT * FROM worker, department WHERE worker.email=\""+request.getParameter("email")+"\"");
 //            checking password
             if(worker.next()&&request.getParameter("password").equals(worker.getString("password"))){
-                System.out.println("login success");
-                System.out.println(worker.getString("status"));
                 session.setAttribute("name", worker.getString("name"));
                 session.setAttribute("email", worker.getString("email"));
                 session.setAttribute("id", worker.getInt("id"));
+                session.setAttribute("department_id", worker.getString("department_id"));
                 session.setAttribute("department_name", worker.getString("department_name"));
+                session.setAttribute("status", worker.getString("worker.status"));
                 if(worker.getString("status").equals("admin")){
                     response.setStatus(response.SC_MOVED_TEMPORARILY);
-                    response.setHeader("Location", "./src/admin/"); 
+                    response.setHeader("Location", "./src/admin/");
                 }else if(worker.getString("status").equals("employee")){
                     response.setStatus(response.SC_MOVED_TEMPORARILY);
                     response.setHeader("Location", "./src/worker/"); 

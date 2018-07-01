@@ -10,8 +10,9 @@
                 <h6><%=session.getAttribute("name")%></h6>
                 <p><%=session.getAttribute("department_name")%></p>
             </div>
-            <form id="logout" method="POST" action="./../../index.jsp" style="display: none;">
-            </form>
+            <form id="logout" method="POST" action="./../../index.jsp" style="display: none;"></form>
+            <form id="editDetails" method="POST" style="display: none;"></form>
+            <input form="editDetails" class="dropdown-item" type="submit" value="Edit Account" />
             <div class="dropdown-divider"></div>
             <input form="logout" class="dropdown-item" type="submit" value="Logout" />
         </div>
