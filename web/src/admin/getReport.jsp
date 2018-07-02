@@ -64,10 +64,26 @@
 //                updating row counter
                 ++i;                       
             }
+//            seetting contentType and header
+            response.setContentType("application/octet-stream");
+            response.setHeader("Content-Disposition", "attachment; filename=\"report.xls\"");            
 //            writing file
             FileOutputStream fileOut =  new FileOutputStream(filename);
             hwb.write(fileOut);
             fileOut.close();
+//            initializing PrintWriter
+            PrintWriter output = response.getWriter();
+//            initializing output stream
+            FileInputStream fileInputStream = new FileInputStream(filename);
+//            writing file
+            int j;
+            while ((j = fileInputStream.read()) != -1) {
+		output.write(j);
+            }
+//            closing FileInputStream
+            fileInputStream.close();
+//            closing PrintWriter
+            output.close();         
 //            closing connection
             con.close();
         }catch(Exception e){
