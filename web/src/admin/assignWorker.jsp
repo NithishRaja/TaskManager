@@ -45,6 +45,10 @@
             Statement st = con.createStatement();
             ResultSet worker = st.executeQuery("SELECT * FROM worker WHERE id="+request.getParameter("worker"));
             worker.next();
+//            getting task details
+            Statement s = con.createStatement();
+            ResultSet task = s.executeQuery("SELECT * FROM tasklist, department WHERE department.id=tasklist.department_id AND tasklist.id="+request.getParameter("task"));
+            task.next();
 //            sending mail to worker
 //            Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(mailSession);
@@ -55,7 +59,11 @@
 //            Set Subject: header field
             message.setSubject("task assigned");
 //            Now set the actual message
-            message.setText("New task has been assigned to you");
+            message.setText("New task has been assigned to you"
+                    +"\n Department: "+task.getString("department_name")
+                    +"\n Description: "+task.getString("description")
+                    +"\n Remarks: "+task.getString("remarks")
+                    +"\n Date: "+task.getString("date"));
 //            Send message
             Transport.send(message);      
         }else{

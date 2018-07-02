@@ -44,6 +44,10 @@
 //        getting all admin email
         Statement st = con.createStatement();
         ResultSet admin = st.executeQuery("SELECT * FROM worker WHERE status=\"admin\"");
+//        getting department name
+        Statement s = con.createStatement();
+        ResultSet dept = s.executeQuery("SELECT * FROM department WHERE id="+request.getParameter("department"));
+        dept.next();
 //        sending mail to all admin
         while(admin.next()){
 //            Create a default MimeMessage object.
@@ -55,7 +59,11 @@
 //            Set Subject: header field
             message.setSubject("new task added");
 //            Now set the actual message
-            message.setText("New task from "+request.getParameter("department")+"has been added on "+request.getParameter("date"));
+            message.setText("New task has been added "
+                    +"\n Department: "+dept.getString("department_name")
+                    +"\n Description: "+request.getParameter("description")
+                    +"\n Remarks: "+request.getParameter("remarks")
+                    +"\n Date: "+request.getParameter("date"));
 //            Send message
             Transport.send(message);
         }

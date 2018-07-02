@@ -44,7 +44,7 @@
             ResultSet admin = st.executeQuery("SELECT * FROM worker WHERE status=\"admin\"");
 //            getting task details and worker name
             Statement s = con.createStatement();
-            ResultSet task = s.executeQuery("SELECT * FROM tasklist, worker WHERE tasklist.id="+request.getParameter("id")+" AND worker.id=tasklist.worker_id");
+            ResultSet task = s.executeQuery("SELECT * FROM tasklist, worker, department WHERE department.id=tasklist.department_id AND tasklist.id="+request.getParameter("id")+" AND worker.id=tasklist.worker_id");
             task.next();
 //            sending mail to all admin
             while(admin.next()){
@@ -57,7 +57,12 @@
 //                Set Subject: header field
                 message.setSubject("task closed");
 //                Now set the actual message
-                message.setText("A task has been closed by "+task.getString("worker.name"));
+                message.setText("A task has been closed "
+                        +"\n Department: "+task.getString("department_name")
+                        +"\n Description: "+task.getString("description")
+                        +"\n Remarks: "+task.getString("remarks")
+                        +"\n Worker: "+task.getString("worker.name")
+                        +"\n Date: "+task.getString("date"));
 //                Send message
                 Transport.send(message);
             }            
