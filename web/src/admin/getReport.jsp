@@ -9,12 +9,12 @@
 //            connecting to database
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
-//            getting inprogress tasks 
+//            getting task details 
             Statement stmt1 = con.createStatement();
-            ResultSet inprogressTask = stmt1.executeQuery("SELECT * FROM tasklist, department, worker WHERE tasklist.status=\"inprogress\" AND department.id=tasklist.department_id AND worker.id=tasklist.worker_id");
-//            getting closed tasks 
+            ResultSet task = stmt1.executeQuery("SELECT * FROM tasklist, department, worker WHERE department.id=tasklist.department_id AND worker.id=tasklist.worker_id ORDER BY tasklist.status DESC");
+//            getting open task details
             Statement stmt2 = con.createStatement();
-            ResultSet closedTask = stmt2.executeQuery("SELECT * FROM tasklist, department, worker WHERE tasklist.status=\"closed\" AND department.id=tasklist.department_id AND worker.id=tasklist.worker_id");            
+            ResultSet openTask = stmt2.executeQuery("SELECT * FROM tasklist, department WHERE department.id=tasklist.department_id AND tasklist.status=\"open\" ORDER BY tasklist.status DESC");
 //            setting file name
             String filename="F:/Nithish/spreadsheet/report.xls";
 //            creating new sheet
@@ -22,12 +22,6 @@
             HSSFSheet sheet =  hwb.createSheet("new sheet");
 //            initialising row counter
             int i=0;
-//            creating row for in progress tasks
-            HSSFRow rowtitle1=   sheet.createRow((short)i);
-//            inserting task status
-            rowtitle1.createCell((short) 0).setCellValue("In Progress tasks");
-//            updating row counter
-            ++i;
 //            creating row for headers
             HSSFRow rowhead1=   sheet.createRow((short)i);
 //            setting row headers            
@@ -37,52 +31,38 @@
             rowhead1.createCell((short) 3).setCellValue("Remarks");
             rowhead1.createCell((short) 4).setCellValue("Worker");
             rowhead1.createCell((short) 5).setCellValue("Date");
+            rowhead1.createCell((short) 6).setCellValue("Status");
 //            updating row counter
             ++i;
-//            inputing values into sheet
-            while(inprogressTask.next()){
+//            inputing task values into sheet
+            while(task.next()){
 //                creating row for task
                 HSSFRow row=   sheet.createRow((short)i);
 //                entering values into cells
                 row.createCell((short) 0).setCellValue(i);
-                row.createCell((short) 1).setCellValue(inprogressTask.getString("department_name"));
-                row.createCell((short) 2).setCellValue(inprogressTask.getString("description"));
-                row.createCell((short) 3).setCellValue(inprogressTask.getString("remarks"));
-                row.createCell((short) 4).setCellValue(inprogressTask.getString("worker.name"));
-                row.createCell((short) 5).setCellValue(inprogressTask.getString("date"));
+                row.createCell((short) 1).setCellValue(task.getString("department_name"));
+                row.createCell((short) 2).setCellValue(task.getString("description"));
+                row.createCell((short) 3).setCellValue(task.getString("remarks"));
+                row.createCell((short) 4).setCellValue(task.getString("worker.name"));
+                row.createCell((short) 5).setCellValue(task.getString("date"));
+                row.createCell((short) 6).setCellValue(task.getString("status"));
 //                updating row counter
                 ++i;                
             }
-//            creating row for closed tasks
-            HSSFRow rowtitle2= sheet.createRow((short)i);
-//            inserting task status
-            rowtitle2.createCell((short) 0).setCellValue("Closed tasks");
-//            updating row counter
-            ++i;
-//            creating row for headers
-            HSSFRow rowhead2=   sheet.createRow((short)i);
-//            setting row headers            
-            rowhead2.createCell((short) 0).setCellValue("SNo");
-            rowhead2.createCell((short) 1).setCellValue("department");
-            rowhead2.createCell((short) 2).setCellValue("Description");
-            rowhead2.createCell((short) 3).setCellValue("Remarks");
-            rowhead2.createCell((short) 4).setCellValue("Worker");
-            rowhead2.createCell((short) 5).setCellValue("Date");
-//            updating row counter
-            ++i;
-//            inputing values into sheet
-            while(closedTask.next()){
+//            inputting open task values into sheet
+            while(openTask.next()){
 //                creating row for task
                 HSSFRow row=   sheet.createRow((short)i);
 //                entering values into cells
                 row.createCell((short) 0).setCellValue(i);
-                row.createCell((short) 1).setCellValue(closedTask.getString("department_name"));
-                row.createCell((short) 2).setCellValue(closedTask.getString("description"));
-                row.createCell((short) 3).setCellValue(closedTask.getString("remarks"));
-                row.createCell((short) 4).setCellValue(closedTask.getString("worker.name"));
-                row.createCell((short) 5).setCellValue(closedTask.getString("date"));
+                row.createCell((short) 1).setCellValue(openTask.getString("department_name"));
+                row.createCell((short) 2).setCellValue(openTask.getString("description"));
+                row.createCell((short) 3).setCellValue(openTask.getString("remarks"));
+                row.createCell((short) 4).setCellValue("");
+                row.createCell((short) 5).setCellValue(openTask.getString("date"));
+                row.createCell((short) 6).setCellValue(openTask.getString("status"));
 //                updating row counter
-                ++i;                
+                ++i;                       
             }
 //            writing file
             FileOutputStream fileOut =  new FileOutputStream(filename);
