@@ -15,7 +15,7 @@
             worker.next();
 //            getting task of current worker
             Statement st = con.createStatement();
-            ResultSet task = st.executeQuery("SELECT * FROM tasklist WHERE worker_id="+worker.getInt("worker.id"));
+            ResultSet task = st.executeQuery("SELECT * FROM tasklist WHERE worker_id="+worker.getInt("worker.id")+" ORDER BY id DESC");
     %>
     <body>
         <%@include file="./../common/navbar.jsp" %>

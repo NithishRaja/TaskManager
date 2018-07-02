@@ -11,7 +11,7 @@
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
 //                get current worker tasks from database
                 Statement stmt = con.createStatement();
-                ResultSet task = stmt.executeQuery("SELECT * FROM tasklist, department WHERE tasklist.worker_id="+session.getAttribute("id")+" AND department.id=tasklist.department_id");                 
+                ResultSet task = stmt.executeQuery("SELECT * FROM tasklist, department WHERE tasklist.worker_id="+session.getAttribute("id")+" AND department.id=tasklist.department_id ORDER BY tasklist.id DESC");                 
 %>
     <body>
         <%@include file="./../common/navbar.jsp" %>

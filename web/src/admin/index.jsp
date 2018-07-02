@@ -11,10 +11,10 @@
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
 //                getting all tasks details from database
                 Statement stmt=con.createStatement();  
-                ResultSet task = stmt.executeQuery("SELECT * FROM tasklist, department, worker WHERE department.id=tasklist.department_id AND worker.id=tasklist.worker_id");
+                ResultSet task = stmt.executeQuery("SELECT * FROM tasklist, department, worker WHERE department.id=tasklist.department_id AND worker.id=tasklist.worker_id ORDER BY tasklist.id DESC");
 //                getting open tasks
                 Statement stmts = con.createStatement();
-                ResultSet openTask = stmts.executeQuery("SELECT * FROM tasklist, department WHERE department.id=tasklist.department_id AND tasklist.status=\"open\"");
+                ResultSet openTask = stmts.executeQuery("SELECT * FROM tasklist, department WHERE department.id=tasklist.department_id AND tasklist.status=\"open\" ORDER BY tasklist.id DESC");
 //                getting workers from database
                 Statement st=con.createStatement();
                 ResultSet worker=st.executeQuery("SELECT id, name FROM worker WHERE status=\"employee\"");
