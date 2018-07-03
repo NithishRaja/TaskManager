@@ -17,7 +17,14 @@ Simple task managing system with admin assigning task to workers and update task
 
 ## DATABASES
 
-* department table: id INT(20) PRIMARY KEY AUTO_INCREMENT, department_name VARCHAR(20)
-* worker table: id INT(20) PRIMARY KEY AUTO_INCREMENT, name VARCHAR(20), email VARCHAR(40), department_id INT(20), status VARCHAR(20)
+* department table: id INT(20) PRIMARY KEY AUTO_INCREMENT, department_name VARCHAR(80), department_group VARCHAR(40)
+* worker table: id INT(20) PRIMARY KEY AUTO_INCREMENT, name VARCHAR(20), email VARCHAR(40), department_id INT(20), status VARCHAR(20), password VARCHAR(20)
 * tasklist table: id INT(20) PRIMARY KEY AUTO_INCREMENT, department_id INT(20), worker_id INT(20), description VARCHAR(80), remarks VARCHAR(40), status VARCHAR(20), date DATE
-* files: id INT(20) PRIMARY KEY AUTO_INCREMENT, task_id INT(20), filepath VARCHAR(40), file_name VARCHAR(20)
+* files: id INT(20) PRIMARY KEY AUTO_INCREMENT, task_id INT(20), filepath VARCHAR(80), file_name VARCHAR(80)
+
+## LIBRARIES USED
+
+* `java.mail.internet`
+* `org.apache.commons.fileupload`
+* `org.apache.commons.io`
+* `java.sql`
