@@ -19,8 +19,8 @@
             %>
             <div class="card">
                 <div class="card-body" style="align-self: center;">
-                    <h5 class="card-title" style="text-align: center;"><%=worker.getString("name")%></h5>
-                    <p class="card-subtitle" style="text-align: center;"><%= worker.getString("department_name") %></p>
+                    <h5 class="card-title center-text"><%=worker.getString("name")%></h5>
+                    <p class="card-subtitle center-text"><%= worker.getString("department_name") %></p>
                 </div>
                 <div class="card-footer">
                     <a class="btn btn-outline-success" href="./workerDetails.jsp?worker=<%=worker.getInt("id")%>">get more details</a>

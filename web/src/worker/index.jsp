@@ -16,7 +16,7 @@
     <body>
         <%@include file="./../common/navbar.jsp" %>
         <section class="card">
-        <div class="card-header">
+        <div class="card-header card-header-background">
             <nav>
                 <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-inprogress-tab" data-toggle="tab" href="#nav-inprogress" role="tab" aria-controls="nav-profile" aria-selected="false">In Progress</a>
@@ -24,14 +24,14 @@
                 </div>
             </nav>
         </div>
-        <div class="card-body">
+        <div class="card-body card-main-body">
         <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade" id="nav-assigned" role="tabpanel">
         <%while(task.next()){
         %>
         <div class="card" style="margin-top: 2%;">
             <!-- Displaying task details -->
-            <hgroup class="card-header" style="text-align: center">
+            <hgroup class="card-header center-text">
                 <h5><%= task.getString("department_name") %></h5>
                 <h6><%= task.getString("date") %></h6>
             </hgroup>
@@ -62,7 +62,7 @@
         %>
         <div class="card" style="margin-top: 2%;">
             <!-- Displaying inprogress task details -->
-            <hgroup class="card-header" style="text-align: center">
+            <hgroup class="card-header center-text">
                 <h5><%= task.getString("department_name") %></h5>
                 <h6><%= task.getString("date") %></h6>
             </hgroup>
@@ -89,7 +89,7 @@
             <form id="upload-file-form" method="POST" action="./uploadFile.jsp" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<%=task.getInt("id")%>"/>
                 <input type="file" name="file" size="50" />
-                <input type="submit" name="upload_file" value="Upload File" class="btn-outline-success" />
+                <input type="submit" name="upload_file" value="Upload File" class="btn btn-outline-info" />
             </form>
             </div>
             <!-- Form to change task status from inprogress to closed -->

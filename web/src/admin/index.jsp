@@ -24,7 +24,7 @@
         <!-- display all tasks categorized according to their status -->
         <section class="card">
             <!-- nav for toggling task status -->
-        <div class="card-header">
+        <div class="card-header nav-header-background">
             <nav>
                 <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-closed-tab" data-toggle="tab" href="#nav-closed" role="tab" aria-controls="nav-contact" aria-selected="false">Closed</a>
@@ -34,7 +34,7 @@
                 </div>
             </nav>
         </div>
-        <div class="card-body">
+        <div class="card-body card-main-body">
             <!-- displaying tasks according to status selected -->
             <div class="tab-content" id="nav-tabContent">
             <!-- Display tasks that have status as open -->
@@ -43,7 +43,7 @@
                 if(openTask.getString("tasklist.status").equals("open")){
             %>
             <div class="card" style="margin-top: 2%;">
-                <hgroup class="card-header" style="text-align: center">
+                <hgroup class="card-header center-text">
                     <h5><%= openTask.getString("department_name") %></h5>
                     <h6><%= openTask.getString("date") %></h6>
                 </hgroup>
@@ -63,7 +63,7 @@
                 <form method="POST" action="./assignWorker.jsp">
                     <input type="hidden" name="task" value="<%=openTask.getInt("id")%>"/>
                     <div class="form-group">
-                        <label for="worker">Worker: </label>
+                        <label for="worker">Assign Employee: </label>
                         <select class="form-control"
                                 required
                                 name="worker" 
@@ -89,7 +89,7 @@
                     if(task.getString("tasklist.status").equals("assigned")){
                 %>
                 <div class="card" style="margin-top: 2%;">
-                <hgroup class="card-header" style="text-align: center">
+                <hgroup class="card-header center-text">
                     <h5><%= task.getString("department_name") %></h5>
                     <h6><%= task.getString("date") %></h6>
                 </hgroup>
@@ -103,8 +103,8 @@
                               id="assigned-remarks"
                               readonly><%= task.getString("remarks") %></textarea>
                 </div>
-                <div class="card-footer">
-                    <label>Worker: </label><%= task.getString("worker.name") %>
+                <div class="card-footer center-text">
+                    <label>Employee Assigned: <%= task.getString("worker.name") %></label>
                 </div>
                 </div>
                 <%}}
@@ -117,7 +117,7 @@
                     if(task.getString("tasklist.status").equals("inprogress")){
                 %>
                 <div class="card" style="margin-top: 2%;">
-                    <hgroup class="card-header" style="text-align: center">
+                    <hgroup class="card-header center-text">
                         <h5><%= task.getString("department_name") %></h5>
                         <h6><%= task.getString("date") %></h6>
                     </hgroup>    
@@ -133,8 +133,8 @@
                                   readonly><%= task.getString("remarks") %>
                         </textarea>
                     </div>
-                    <div class="card-footer">
-                        <label>Worker: </label><%= task.getString("worker.name") %>
+                    <div class="card-footer center-text">
+                        <label>Employee Assigned: <%= task.getString("worker.name") %></label>
                     </div>
                 </div>
                 <%}}
@@ -147,7 +147,7 @@
                     if(task.getString("tasklist.status").equals("closed")){
                 %>
                 <div class="card" style="margin-top: 2%;">
-                    <hgroup class="card-header" style="text-align: center">
+                    <hgroup class="card-header center-text">
                         <h5><%= task.getString("department_name") %></h5>
                         <h6><%= task.getString("date") %></h6>
                     </hgroup>
@@ -175,8 +175,8 @@
                         <%}%>
                         </ul>
                     </div>
-                    <div class="card-footer">
-                        <label>Worker: </label><%= task.getString("worker.name") %>
+                    <div class="card-footer center-text">
+                        <label>Employee Assigned: <%= task.getString("worker.name") %></label>
                     </div>
                 </div>
                 <%}}

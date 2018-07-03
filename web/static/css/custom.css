@@ -1,0 +1,70 @@
+body{
+    font-family: Arial;
+}
+.worker-body{
+    background-color: #e1e8f0;
+}
+.center-text{
+    text-align: center;
+}
+.navbar-background{
+    background-color: #424242;
+}
+.navbar-text-color{
+    color: #e1e8f0;
+}
+.navbar-text-color:hover{
+    color: #e1e8f0;
+}
+#navbarDropdown{
+    color: #e1e8f0;
+}
+#navbarDropdown:hover{
+    color: #e1e8f0;
+}
+.card-header, .card-footer{
+    font-family: "Comic Sans MS";
+}
+.index-card{
+    border-color: #6ed3cf;
+}
+.index-card-header{
+    background-color: #424242;
+    color: #6ed3cf;
+    border-color: #6ed3cf;
+    text-align: center;
+}
+.index-card-body{
+    background-color: #f4f4f4;
+}
+.card-body{
+    font-family: Verdana;
+}
+a.btn{
+    font-family: Tahoma;
+}
+input[type="submit"].btn{
+    font-family: Tahoma;
+}
+.nav-tabs .nav-link{
+    color: #424242;
+}
+.nav-tabs .nav-link:hover{
+    color: #424242;
+}
+.nav-tabs .nav-link.active{
+    background-color: #424242;
+    border-color: #424242;
+    color: #e1e8f0;
+}
+.card-main-body{
+    background-color: #424242;
+}
+.page-link{
+    background-color: #424242;
+    color: #e1e8f0;
+}
+.page-link:hover{
+    background-color: #e1e8f0;
+    color: #424242;
+}

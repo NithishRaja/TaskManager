@@ -11,6 +11,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" 
               href="./static/css/bootstrap.min.css"/>
+        <link rel="stylesheet" 
+              href="./static/css/custom.css"/>
         <title>TASK MANAGER</title>
     </head>
     <%
@@ -54,9 +56,9 @@
             }           
         }
     %>
-    <body>
-        <nav class="navbar navbar-dark" style="background-color: rgba(255,165,0,1)">
-            <a class="navbar-brand" href="https://clri.org/">
+    <body style="background-color: #e1e8f0;">
+        <nav class="navbar navbar-background">
+            <a class="navbar-brand navbar-text-color" href="https://clri.org/">
                 <img src="./static/images/clriLogo.png" width="30" height="30" alt="logo" />
                 CSIR-Central Leather Research Institute
              </a>
@@ -64,11 +66,11 @@
         <main class="container" style="margin-top: 2%;">
         <!-- Task entry section -->
         <section class="card-deck">
-        <article class="card">
-            <div class="card-header">
+        <article class="card index-card">
+            <div class="card-header index-card-header">
                 <h1 class="card-title">Task entry</h1>
             </div>
-            <div class="card-body">
+            <div class="card-body index-card-body">
             <form method="POST" action="./src/DEO/newTask.jsp">
                 <div class="form-group">
                     <label for="department">Department: </label>
@@ -123,11 +125,11 @@
             </div>
         </article>
         <!-- Login section -->
-        <article class="card">
-            <div class="card-header">
+        <article class="card index-card">
+            <div class="card-header index-card-header">
                 <h1 class="card-title">Login</h1>
             </div>
-            <div class="card-body">
+            <div class="card-body index-card-body">
             <form method="POST" action="./index.jsp">
                 <div class="form-group">
                     <label for="email">Email: </label>
