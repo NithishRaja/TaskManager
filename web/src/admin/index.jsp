@@ -43,10 +43,10 @@
                 if(openTask.getString("tasklist.status").equals("open")){
             %>
             <div class="card" style="margin-top: 2%;">
-                <div class="card-header">
-                    <label class="col-3">Department: </label><%= openTask.getString("department_name") %>
-                    <label class="offset-3 col-3">Date: </label><%= openTask.getString("date") %>
-                </div>
+                <hgroup class="card-header" style="text-align: center">
+                    <h5><%= openTask.getString("department_name") %></h5>
+                    <h6><%= openTask.getString("date") %></h6>
+                </hgroup>
                 <div class="card-body">
                 <label for="open-description">Description: </label>
                 <textarea class="form-control"
@@ -89,10 +89,10 @@
                     if(task.getString("tasklist.status").equals("assigned")){
                 %>
                 <div class="card" style="margin-top: 2%;">
-                <div class="card-header">
-                    <label class="col-3">Department: </label><%= task.getString("department_name") %>
-                    <label class="offset-3 col-3">Date: </label><%= task.getString("date") %>
-                </div>
+                <hgroup class="card-header" style="text-align: center">
+                    <h5><%= task.getString("department_name") %></h5>
+                    <h6><%= task.getString("date") %></h6>
+                </hgroup>
                 <div class="card-body">
                     <label for="assigned-description">Description: </label>
                     <textarea class="form-control"
@@ -117,10 +117,10 @@
                     if(task.getString("tasklist.status").equals("inprogress")){
                 %>
                 <div class="card" style="margin-top: 2%;">
-                    <div class="card-header">
-                        <label class="col-3">Department: </label><%= task.getString("department_name") %>
-                        <label class="offset-3 col-3">Date: </label><%= task.getString("date") %>
-                    </div>    
+                    <hgroup class="card-header" style="text-align: center">
+                        <h5><%= task.getString("department_name") %></h5>
+                        <h6><%= task.getString("date") %></h6>
+                    </hgroup>    
                     <div class="card-body">
                         <label>Description: </label>
                         <textarea class="form-control"
@@ -147,10 +147,10 @@
                     if(task.getString("tasklist.status").equals("closed")){
                 %>
                 <div class="card" style="margin-top: 2%;">
-                    <div class="card-header">
-                        <label class="col-3">Department: </label><%= task.getString("department_name") %>
-                        <label class="offset-3 col-3">Date: </label><%= task.getString("date") %>
-                    </div>
+                    <hgroup class="card-header" style="text-align: center">
+                        <h5><%= task.getString("department_name") %></h5>
+                        <h6><%= task.getString("date") %></h6>
+                    </hgroup>
                     <div class="card-body">
                         <label for="closed-description">Description: </label>
                         <textarea class="form-control"

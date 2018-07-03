@@ -31,10 +31,10 @@
         %>
         <div class="card" style="margin-top: 2%;">
             <!-- Displaying task details -->
-            <div class="card-header">
-                <label class="col-3">Department: </label><%= task.getString("department_name") %>
-                <label class="offset-3 col-3">Date: </label><%= task.getString("date") %>
-            </div>
+            <hgroup class="card-header" style="text-align: center">
+                <h5><%= task.getString("department_name") %></h5>
+                <h6><%= task.getString("date") %></h6>
+            </hgroup>
             <div class="card-body">
             <label for="assigned-description">Description: </label>
             <textarea class="form-control" 
@@ -62,10 +62,10 @@
         %>
         <div class="card" style="margin-top: 2%;">
             <!-- Displaying inprogress task details -->
-            <div class="card-header">
-                <label class="col-3">Department: </label><%= task.getString("department_name") %>
-                <label class="offset-3 col-3">Date: </label><%= task.getString("date") %>
-            </div>
+            <hgroup class="card-header" style="text-align: center">
+                <h5><%= task.getString("department_name") %></h5>
+                <h6><%= task.getString("date") %></h6>
+            </hgroup>
             <div class="card-body">
             <label for="inprogress-description">Description: </label>
             <textarea class="form-control"
