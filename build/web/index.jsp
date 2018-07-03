@@ -59,7 +59,7 @@
     <body style="background-color: #e1e8f0;">
         <nav class="navbar navbar-background">
             <a class="navbar-brand navbar-text-color" href="https://clri.org/">
-                <img src="./static/images/clriLogo.png" width="30" height="30" alt="logo" />
+                <img src="./static/images/clriLogo.png" width="50" height="50" alt="logo" />
                 CSIR-Central Leather Research Institute
              </a>
         </nav>
