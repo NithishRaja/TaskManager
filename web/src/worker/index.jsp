@@ -29,6 +29,7 @@
         <div class="tab-pane fade" id="nav-assigned" role="tabpanel">
         <div class="accordion" id="assignedTask">
         <%while(task.next()){
+            if(task.getString("tasklist.status").equals("assigned")){
         %>
         <div class="card">
             <!-- Displaying task details -->
@@ -57,7 +58,7 @@
             </div>
             </div>
         </div>
-        <%}
+        <%}}
         task.beforeFirst();
         %>
         </div>
@@ -65,6 +66,7 @@
         <div class="tab-pane fade show active" id="nav-inprogress" role="tabpanel">
         <div class="accordion" id="inprogressTask">
         <%while(task.next()){
+            if(task.getString("tasklist.status").equals("inprogress")){
         %>
         <div class="card">
             <!-- Displaying inprogress task details -->
@@ -109,7 +111,7 @@
             </div>
             </div>
         </div>
-        <%}%>
+        <%}}%>
         </div>
         </div>
         </div>
