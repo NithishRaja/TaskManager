@@ -27,14 +27,17 @@
         <div class="card-body card-main-body">
         <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade" id="nav-assigned" role="tabpanel">
+        <div class="accordion" id="assignedTask">
         <%while(task.next()){
         %>
-        <div class="card" style="margin-top: 2%;">
+        <div class="card">
             <!-- Displaying task details -->
             <hgroup class="card-header center-text">
                 <h5><%= task.getString("department_name") %></h5>
                 <h6><%= task.getString("date") %></h6>
+                <button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#assignedTask<%=task.getInt("tasklist.id")%>">Toggle</button>
             </hgroup>
+            <div id="assignedTask<%=task.getInt("tasklist.id")%>" class="collapse" data-parent="#assignedTask">
             <div class="card-body">
             <label for="assigned-description">Description: </label>
             <textarea class="form-control" 
@@ -52,20 +55,25 @@
                 <input class="btn btn-outline-success" type="submit" name="start_task" value="Start task"/>
             </form>                
             </div>
+            </div>
         </div>
         <%}
         task.beforeFirst();
         %>
         </div>
+        </div>
         <div class="tab-pane fade show active" id="nav-inprogress" role="tabpanel">
+        <div class="accordion" id="inprogressTask">
         <%while(task.next()){
         %>
-        <div class="card" style="margin-top: 2%;">
+        <div class="card">
             <!-- Displaying inprogress task details -->
             <hgroup class="card-header center-text">
                 <h5><%= task.getString("department_name") %></h5>
                 <h6><%= task.getString("date") %></h6>
+                <button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#inprogressTask<%=task.getInt("tasklist.id")%>">Toggle</button>
             </hgroup>
+            <div id="inprogressTask<%=task.getInt("tasklist.id")%>" class="collapse" data-parent="#inprogressTask">
             <div class="card-body">
             <label for="inprogress-description">Description: </label>
             <textarea class="form-control"
@@ -99,8 +107,10 @@
                 <input class="btn btn-outline-success" type="submit" name="close_task" value="Close task"/>
             </form>
             </div>
+            </div>
         </div>
         <%}%>
+        </div>
         </div>
         </div>
         </div>

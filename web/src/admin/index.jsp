@@ -39,14 +39,17 @@
             <div class="tab-content" id="nav-tabContent">
             <!-- Display tasks that have status as open -->
             <div class="tab-pane fade" id="nav-open" role="tabpanel">
+            <div class="accordion" id="openTask">
             <%while(openTask.next()){
                 if(openTask.getString("tasklist.status").equals("open")){
             %>
-            <div class="card" style="margin-top: 2%;">
+            <div class="card">
                 <hgroup class="card-header center-text">
                     <h5><%= openTask.getString("department_name") %></h5>
                     <h6><%= openTask.getString("date") %></h6>
+                    <button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#openTask<%=openTask.getInt("tasklist.id")%>">Toggle</button>
                 </hgroup>
+                <div id="openTask<%=openTask.getInt("tasklist.id")%>" class="collapse" data-parent="#openTask">
                 <div class="card-body">
                 <label for="open-description">Description: </label>
                 <textarea class="form-control"
@@ -78,21 +81,26 @@
                     <input class="btn btn-outline-success" type="submit" name="submit" value="Asssign Worker" />
                 </form>                    
                 </div>
+                </div>
             </div>
             <%}}
                 openTask.beforeFirst();
             %>
             </div>
+            </div>
             <!-- Display tasks that have status as assigned -->
             <div class="tab-pane fade" id="nav-assigned" role="tabpanel">    
+            <div class="accordion" id="assignedTask">
             <%while(task.next()){
                     if(task.getString("tasklist.status").equals("assigned")){
                 %>
-                <div class="card" style="margin-top: 2%;">
+                <div class="card">
                 <hgroup class="card-header center-text">
                     <h5><%= task.getString("department_name") %></h5>
                     <h6><%= task.getString("date") %></h6>
+                    <button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#assignedTask<%=task.getInt("tasklist.id")%>">Toggle</button>
                 </hgroup>
+                <div id="assignedTask<%=task.getInt("tasklist.id")%>" class="collapse" data-parent="#assignedTask">
                 <div class="card-body">
                     <label for="assigned-description">Description: </label>
                     <textarea class="form-control"
@@ -107,20 +115,25 @@
                     <label>Employee Assigned: <%= task.getString("worker.name") %></label>
                 </div>
                 </div>
+                </div>
                 <%}}
                     task.beforeFirst();
                 %>
                 </div>
+                </div>
             <!-- Display tasks that have status as inprogress -->
                 <div class="tab-pane fade" id="nav-inprogress" role="tabpanel">
+                <div class="accordion" id="inprogressTask">
                 <%while(task.next()){
                     if(task.getString("tasklist.status").equals("inprogress")){
                 %>
-                <div class="card" style="margin-top: 2%;">
+                <div class="card">
                     <hgroup class="card-header center-text">
                         <h5><%= task.getString("department_name") %></h5>
                         <h6><%= task.getString("date") %></h6>
-                    </hgroup>    
+                        <button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#inprogressTask<%=task.getInt("tasklist.id")%>">Toggle</button>
+                    </hgroup>
+                    <div id="inprogressTask<%=task.getInt("tasklist.id")%>" class="collapse" data-parent="#inprogressTask">
                     <div class="card-body">
                         <label>Description: </label>
                         <textarea class="form-control"
@@ -136,21 +149,26 @@
                     <div class="card-footer center-text">
                         <label>Employee Assigned: <%= task.getString("worker.name") %></label>
                     </div>
+                    </div>
                 </div>
                 <%}}
                     task.beforeFirst();
                 %>
                 </div>
+                </div>
             <!-- Display tasks that have status as closed -->
                 <div class="tab-pane fade show active" id="nav-closed" role="tabpanel">
+                <div class="accordion" id="closedTask">
                 <%while(task.next()){
                     if(task.getString("tasklist.status").equals("closed")){
                 %>
-                <div class="card" style="margin-top: 2%;">
+                <div class="card">
                     <hgroup class="card-header center-text">
                         <h5><%= task.getString("department_name") %></h5>
                         <h6><%= task.getString("date") %></h6>
+                        <button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#closedTask<%=task.getInt("tasklist.id")%>">Toggle</button>
                     </hgroup>
+                    <div id="closedTask<%=task.getInt("tasklist.id")%>" class="collapse" data-parent="#closedTask">
                     <div class="card-body">
                         <label for="closed-description">Description: </label>
                         <textarea class="form-control"
@@ -178,9 +196,11 @@
                     <div class="card-footer center-text">
                         <label>Employee Assigned: <%= task.getString("worker.name") %></label>
                     </div>
+                    </div>
                 </div>
                 <%}}
                 %>
+                </div>
                 </div>
             </div>
         </div>
