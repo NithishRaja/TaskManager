@@ -33,9 +33,10 @@
         %>
         <div class="card">
             <!-- Displaying task details -->
-            <hgroup class="card-header center-text">
-                <h5><%= task.getString("department_name") %></h5>
-                <h6><%= task.getString("date") %></h6>
+            <hgroup class="card-header card-toggle-header">
+                <div class="card-toggle-hgroup">
+                    <h5><%= task.getString("department_name") %> - <%= task.getString("date") %></h5>
+                </div>
                 <button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#assignedTask<%=task.getInt("tasklist.id")%>">Toggle</button>
             </hgroup>
             <div id="assignedTask<%=task.getInt("tasklist.id")%>" class="collapse" data-parent="#assignedTask">
@@ -70,9 +71,10 @@
         %>
         <div class="card">
             <!-- Displaying inprogress task details -->
-            <hgroup class="card-header center-text">
-                <h5><%= task.getString("department_name") %></h5>
-                <h6><%= task.getString("date") %></h6>
+            <hgroup class="card-header card-toggle-header">
+                <div class="card-toggle-hgroup">
+                    <h5><%= task.getString("department_name") %> - <%= task.getString("date") %></h5>
+                </div>
                 <button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#inprogressTask<%=task.getInt("tasklist.id")%>">Toggle</button>
             </hgroup>
             <div id="inprogressTask<%=task.getInt("tasklist.id")%>" class="collapse" data-parent="#inprogressTask">

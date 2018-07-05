@@ -44,9 +44,10 @@
                 if(openTask.getString("tasklist.status").equals("open")){
             %>
             <div class="card">
-                <hgroup class="card-header center-text">
-                    <h5><%= openTask.getString("department_name") %></h5>
-                    <h6><%= openTask.getString("date") %></h6>
+                <hgroup class="card-header card-toggle-header">
+                    <div class="card-toggle-hgroup">
+                        <h5><%= openTask.getString("department_name") %> - <%= openTask.getString("date") %></h5>
+                    </div>
                     <button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#openTask<%=openTask.getInt("tasklist.id")%>">Toggle</button>
                 </hgroup>
                 <div id="openTask<%=openTask.getInt("tasklist.id")%>" class="collapse" data-parent="#openTask">
@@ -95,9 +96,10 @@
                     if(task.getString("tasklist.status").equals("assigned")){
                 %>
                 <div class="card">
-                <hgroup class="card-header center-text">
-                    <h5><%= task.getString("department_name") %></h5>
-                    <h6><%= task.getString("date") %></h6>
+                <hgroup class="card-header card-toggle-header">
+                    <div class="card-toggle-hgroup">
+                        <h5><%= task.getString("department_name") %> - <%= task.getString("date") %></h5>
+                    </div>
                     <button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#assignedTask<%=task.getInt("tasklist.id")%>">Toggle</button>
                 </hgroup>
                 <div id="assignedTask<%=task.getInt("tasklist.id")%>" class="collapse" data-parent="#assignedTask">
@@ -128,9 +130,10 @@
                     if(task.getString("tasklist.status").equals("inprogress")){
                 %>
                 <div class="card">
-                    <hgroup class="card-header center-text">
-                        <h5><%= task.getString("department_name") %></h5>
-                        <h6><%= task.getString("date") %></h6>
+                    <hgroup class="card-header card-toggle-header">
+                        <div class="card-toggle-hgroup">
+                        <h5><%= task.getString("department_name") %> - <%= task.getString("date") %></h5>
+                        </div>
                         <button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#inprogressTask<%=task.getInt("tasklist.id")%>">Toggle</button>
                     </hgroup>
                     <div id="inprogressTask<%=task.getInt("tasklist.id")%>" class="collapse" data-parent="#inprogressTask">
@@ -163,9 +166,10 @@
                     if(task.getString("tasklist.status").equals("closed")){
                 %>
                 <div class="card">
-                    <hgroup class="card-header center-text">
-                        <h5><%= task.getString("department_name") %></h5>
-                        <h6><%= task.getString("date") %></h6>
+                    <hgroup class="card-header card-toggle-header">
+                        <div class="card-toggle-hgroup">
+                            <h5><%= task.getString("department_name") %> - <%= task.getString("date") %></h5>
+                        </div>
                         <button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#closedTask<%=task.getInt("tasklist.id")%>">Toggle</button>
                     </hgroup>
                     <div id="closedTask<%=task.getInt("tasklist.id")%>" class="collapse" data-parent="#closedTask">
