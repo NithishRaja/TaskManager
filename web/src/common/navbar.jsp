@@ -1,5 +1,5 @@
-<nav class="navbar center navbar-background" style="text-align: center;">
-    <a class="navbar-inner navbar-brand navbar-text-color" href="https://clri.org/">
+<nav class="navbar navbar-background" style="display: flex;">
+    <a class="navbar-brand navbar-text-color" style="flex:1;text-align: center;" href="https://clri.org/">
         <img src="./../../static/images/clriLogo.png" width="50" height="50" alt="CLRI logo" />
         CSIR-Central Leather Research Institute
     </a>

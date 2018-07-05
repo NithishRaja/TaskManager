@@ -17,7 +17,7 @@
             Statement st = con.createStatement();
             ResultSet task = st.executeQuery("SELECT * FROM tasklist WHERE worker_id="+worker.getInt("worker.id")+" ORDER BY id DESC");
     %>
-    <body class="worker-body">
+    <body>
         <%@include file="./../common/navbar.jsp" %>
         <section class="container">
             <article class="card-body">
