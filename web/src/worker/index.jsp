@@ -13,9 +13,9 @@
                 Statement stmt = con.createStatement();
                 ResultSet task = stmt.executeQuery("SELECT * FROM tasklist, department WHERE tasklist.worker_id="+session.getAttribute("id")+" AND department.id=tasklist.department_id ORDER BY tasklist.id DESC");                 
 %>
-    <body>
+    <body class="body">
         <%@include file="./../common/navbar.jsp" %>
-        <section class="card">
+        <section class="card main-card">
         <div class="card-header card-header-background">
             <nav>
                 <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">

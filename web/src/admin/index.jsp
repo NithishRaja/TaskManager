@@ -19,10 +19,10 @@
                 Statement st=con.createStatement();
                 ResultSet worker=st.executeQuery("SELECT id, name FROM worker WHERE status=\"employee\"");
         %>
-    <body>
+    <body class="body">
         <%@include file="./../common/navbar.jsp" %>
         <!-- display all tasks categorized according to their status -->
-        <section class="card">
+        <section class="card main-card">
             <!-- nav for toggling task status -->
         <div class="card-header nav-header-background">
             <nav>

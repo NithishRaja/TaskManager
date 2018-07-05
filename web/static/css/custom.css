@@ -1,5 +1,13 @@
+html{
+    height: 100%;
+}
 body{
     font-family: Arial;
+}
+.body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 .worker-body{
     background-color: #e1e8f0;
@@ -24,6 +32,9 @@ body{
 }
 .card-header, .card-footer{
     font-family: "Comic Sans MS";
+}
+.main-card{
+    flex: 1;
 }
 .index-card{
     border-color: #6ed3cf;
