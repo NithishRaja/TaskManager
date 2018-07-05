@@ -26,7 +26,7 @@
             <!-- nav for toggling task status -->
         <div class="card-header nav-header-background">
             <nav>
-                <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
+                <div class="nav nav-tabs card-header-tabs nav-tabs-center" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-closed-tab" data-toggle="tab" href="#nav-closed" role="tab" aria-controls="nav-contact" aria-selected="false">Closed</a>
                     <a class="nav-item nav-link" id="nav-open-tab" data-toggle="tab" href="#nav-open" role="tab" aria-controls="nav-home" aria-selected="true">Open</a>
                     <a class="nav-item nav-link" id="nav-asssigned-tab" data-toggle="tab" href="#nav-assigned" role="tab" aria-controls="nav-profile" aria-selected="false">Assigned</a>

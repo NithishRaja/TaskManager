@@ -18,7 +18,7 @@
         <section class="card main-card">
         <div class="card-header card-header-background">
             <nav>
-                <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
+                <div class="nav nav-tabs card-header-tabs nav-tabs-center" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-inprogress-tab" data-toggle="tab" href="#nav-inprogress" role="tab" aria-controls="nav-profile" aria-selected="false">In Progress</a>
                     <a class="nav-item nav-link" id="nav-assigned-tab" data-toggle="tab" href="#nav-assigned" role="tab" aria-controls="nav-home" aria-selected="true">Assigned</a>
                 </div>

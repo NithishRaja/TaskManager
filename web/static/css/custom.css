@@ -65,6 +65,10 @@ input[type="submit"].btn{
     border-color: #424242;
     color: #e1e8f0;
 }
+.nav-tabs-center{
+    display: flex;
+    justify-content: center;
+}
 .card-main-body{
     background-color: #424242;
 }
