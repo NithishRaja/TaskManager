@@ -1,7 +1,7 @@
 <nav class="navbar navbar-background" style="display: flex;">
-    <a class="navbar-brand navbar-text-color" style="flex:1;text-align: center;" href="https://clri.org/">
-        <img src="./../../static/images/clriLogo.png" width="50" height="50" alt="CLRI logo" />
-        CSIR-Central Leather Research Institute
+    <a class="navbar-brand navbar-text-color navbar-align" style="flex:1;text-align: center;" href="https://clri.org/">
+        <img src="./../../static/images/clriLogo.png" width="80" height="80" alt="CLRI logo" />
+        <h1>CSIR-Central Leather Research Institute</h1>
     </a>
     <div class="nav-item dropleft">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown"></a>

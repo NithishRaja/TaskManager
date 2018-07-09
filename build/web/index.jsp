@@ -58,9 +58,9 @@
     %>
     <body style="background-color: #e1e8f0;">
         <nav class="navbar navbar-background" style="display: flex;">
-            <a class="navbar-brand navbar-text-color" style="flex:1;text-align: center;" href="https://clri.org/">
+            <a class="navbar-brand navbar-text-color navbar-align" style="flex:1;text-align: center;" href="https://clri.org/">
                 <img src="./static/images/clriLogo.png" width="50" height="50" alt="logo" />
-                CSIR-Central Leather Research Institute
+                <h1>CSIR-Central Leather Research Institute</h1>
              </a>
         </nav>
         <main class="container" style="margin-top: 2%;">
@@ -68,7 +68,7 @@
         <section class="card-deck">
         <article class="card index-card">
             <div class="card-header index-card-header">
-                <h1 class="card-title">Task entry</h1>
+                <h3 class="card-title">Task entry</h3>
             </div>
             <div class="card-body index-card-body">
             <form method="POST" action="./src/DEO/newTask.jsp">
@@ -127,7 +127,7 @@
         <!-- Login section -->
         <article class="card index-card">
             <div class="card-header index-card-header">
-                <h1 class="card-title">Login</h1>
+                <h3 class="card-title">Login</h3>
             </div>
             <div class="card-body index-card-body">
             <form method="POST" action="./index.jsp">
