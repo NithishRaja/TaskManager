@@ -5,6 +5,7 @@
 --%>
 <%@page import="java.sql.*"%>
 <%@ page import="java.io.*,java.util.*, javax.servlet.*" %>
+<%@page import="commons.*"%>
 <%@ page import="org.apache.commons.io.*" %>
 <html>
     <head>
@@ -18,9 +19,10 @@
 <%
     if(session.getAttribute("status")!=null&&request.getParameter("file")!=null){
         try{
+            Commons values = new Commons();
 //            connecting to database
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
+            Connection con = DriverManager.getConnection(values.getDatabaseUrl(), values.getDatabaseUsername(), values.getDatabasePassword());
 //            getting file details
             Statement stmt = con.createStatement();
             ResultSet file = stmt.executeQuery("SELECT * FROM files WHERE id="+request.getParameter("file")); 

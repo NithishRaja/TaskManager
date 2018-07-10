@@ -4,6 +4,7 @@
     Author     : Nithish Raja.G
 --%>
 <%@page import="java.sql.*"%>
+<%@page import="commons.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,9 +18,10 @@
     </head>
     <%
         try{
+        Commons values = new Commons();
 //        connecting to database
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");            
+        Connection con = DriverManager.getConnection(values.getDatabaseUrl(), values.getDatabaseUsername(), values.getDatabasePassword());
 //        getting department details
         Statement stm = con.createStatement();
         ResultSet dept = stm.executeQuery("SELECT * FROM department");

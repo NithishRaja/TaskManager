@@ -5,6 +5,7 @@
 <%@ page import="org.apache.commons.fileupload.disk.*" %>
 <%@ page import="org.apache.commons.fileupload.servlet.*" %>
 <%@ page import="org.apache.commons.io.output.*" %>
+<%@page import="commons.*"%>
 <%    
 //    declaring variables
     File file ;
@@ -23,6 +24,7 @@
         ServletFileUpload upload = new ServletFileUpload(factory);
         upload.setSizeMax(maxFileSize);
         try{
+            Commons values = new Commons();
             List fileItems = upload.parseRequest(request);
 //            initiating iterator for getting form field values
             Iterator formFieldIterator = fileItems.iterator();
@@ -58,7 +60,7 @@
             }
 //            connecting to database
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");                    
+            Connection con = DriverManager.getConnection(values.getDatabaseUrl(), values.getDatabaseUsername(), values.getDatabasePassword());
 //            inserting file info
             Statement stmt = con.createStatement();
             String query = "INSERT INTO files VALUES(null, "

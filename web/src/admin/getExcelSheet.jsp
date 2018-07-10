@@ -1,16 +1,19 @@
 <%@page import="java.io.*"%>
 <%@page import="java.sql.*"%>
 <%@page import="org.apache.poi.hssf.usermodel.*"%>
-
+<%@page import="commons.*"%>
 <%
 //    check if get_excel_sheet form is submitted
     if(request.getParameter("get_excel_sheet")!=null){
         try{
+            Commons values = new Commons();
 //            connecting to database
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
+            Connection con = DriverManager.getConnection(values.getDatabaseUrl(), values.getDatabaseUsername(), values.getDatabasePassword());
+//            get task details
             Statement stmt = con.createStatement();
             ResultSet task = stmt.executeQuery("SELECT * FROM tasklist, department WHERE tasklist.worker_id="+request.getParameter("worker")+" AND department.id=tasklist.department_id");
+//            get worker details
             Statement stm = con.createStatement();
             ResultSet worker = stm.executeQuery("SELECT name FROM worker WHERE id="+request.getParameter("worker"));
             worker.next();

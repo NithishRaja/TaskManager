@@ -8,7 +8,7 @@
         try{
 //            connecting to database
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
+            Connection con = DriverManager.getConnection(values.getDatabaseUrl(), values.getDatabaseUsername(), values.getDatabasePassword());
 //            getting current worker details
             Statement stmt = con.createStatement();
             ResultSet worker = stmt.executeQuery("SELECT * FROM worker, department WHERE worker.id="+request.getParameter("worker")+" AND department.id=worker.department_id");

@@ -6,9 +6,10 @@
             response.setHeader("Location", "./../../index.jsp");
         }
         try{
+                Commons values = new Commons();
 //                connecting to database
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
+                Connection con = DriverManager.getConnection(values.getDatabaseUrl(), values.getDatabaseUsername(), values.getDatabasePassword());
 //                getting all tasks details from database
                 Statement stmt=con.createStatement();  
                 ResultSet task = stmt.executeQuery("SELECT * FROM tasklist, department, worker WHERE department.id=tasklist.department_id AND worker.id=tasklist.worker_id ORDER BY tasklist.id DESC");

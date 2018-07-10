@@ -2,14 +2,15 @@
 <%@page import="java.sql.*"%>
 <%@page import="org.apache.poi.hssf.usermodel.*"%>
 <%@page import="org.apache.poi.hssf.*"%>
-
+<%@page import="commons.*"%>
 <%
 //    checking if form is submitted
     if(request.getParameter("get_report")!=null){
         try{
+            Commons values = new Commons();
 //            connecting to database
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");
+            Connection con = DriverManager.getConnection(values.getDatabaseUrl(), values.getDatabaseUsername(), values.getDatabasePassword());
 //            getting task details 
             Statement stmt1 = con.createStatement();
             ResultSet task = stmt1.executeQuery("SELECT * FROM tasklist, department, worker WHERE department.id=tasklist.department_id AND worker.id=tasklist.worker_id ORDER BY tasklist.status DESC");
