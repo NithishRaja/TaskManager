@@ -21,14 +21,14 @@
         <div class="card-header nav-header-background">
             <nav>
                 <div class="nav nav-tabs card-header-tabs nav-tabs-center" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="nav-current-worker-tab" data-toggle="tab" href="#nav-current-worker" role="tab" aria-controls="nav-contact" aria-selected="false">Current Employees</a>
-                    <a class="nav-item nav-link" id="nav-add-worker-tab" data-toggle="tab" href="#nav-add-worker" role="tab" aria-controls="nav-home" aria-selected="true">Add Employee</a>
+                    <a class="nav-item nav-link" id="nav-current-worker-tab" data-toggle="tab" href="#nav-current-worker" role="tab" aria-controls="nav-contact" aria-selected="false">Current Employees</a>
+                    <a class="nav-item nav-link active" id="nav-add-worker-tab" data-toggle="tab" href="#nav-add-worker" role="tab" aria-controls="nav-home" aria-selected="true">Add Employee</a>
                 </div>
             </nav>
         </div>
         <div class="card card-body card-main-body" style="overflow-y: scroll">
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-current-worker" role="tabpanel">
+                <div class="tab-pane fade" id="nav-current-worker" role="tabpanel">
                     <div class="card-columns" style="margin-top: 2%">
                     <%while(worker.next()){
                     %>
@@ -47,7 +47,7 @@
                         <input type="submit" class="btn btn-outline-warning" style="margin-top: 1%;margin-bottom: 1%;" name="get_report" value="Generate Report"/>
                     </form>
                 </div>
-                <div class="tab-pane fade" id="nav-add-worker" role="tabpanel">
+                <div class="tab-pane fade show active" id="nav-add-worker" role="tabpanel">
                     <form method="POST" class="card card-body" action="./addEmployee.jsp">
                         <div class="form-group">
                             <label for="name">Name: </label>
