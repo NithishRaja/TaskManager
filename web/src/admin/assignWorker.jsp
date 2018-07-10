@@ -21,10 +21,10 @@
             System.out.print("Record Updated Successfully");
 //            code to send email
 //            sender email and password
-            final String from = "taskmanager.clri@gmail.com";
-            final String pass = "taskmanager@clri";
+            final String from = values.getEmailName();
+            final String pass = values.getEmailPassword();
 //            defining host
-            String host = "smtp.gmail.com";
+            String host = values.getEmailHost();
 //            initializing properties
             Properties props = new Properties();
 //            setting properties
