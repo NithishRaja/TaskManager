@@ -1,6 +1,7 @@
 <%@page import="java.io.*"%>
 <%@page import="java.sql.*"%>
 <%@page import="org.apache.poi.hssf.usermodel.*"%>
+<%@page import="org.apache.poi.hssf.*"%>
 
 <%
 //    checking if form is submitted
@@ -47,7 +48,19 @@
                 row.createCell((short) 5).setCellValue(task.getString("date"));
                 row.createCell((short) 6).setCellValue(task.getString("status"));
 //                updating row counter
-                ++i;                
+                ++i;
+//                adding files
+                Statement st = con.createStatement();
+                ResultSet file = st.executeQuery("SELECT * FROM files WHERE task_id="+task.getInt("id"));
+                int j=7;
+                while(file.next()){
+                    HSSFCell cell = row.createCell((short) j);
+                    HSSFHyperlink link=new HSSFHyperlink(HSSFHyperlink.LINK_URL);
+                    link.setAddress("http://localhost:8084/TaskManager/files.jsp?file="+file.getInt("id"));
+                    cell.setCellValue(file.getString("filename"));
+                    cell.setHyperlink(link);
+                    ++j;
+                }
             }
 //            inputting open task values into sheet
             while(openTask.next()){
@@ -63,6 +76,18 @@
                 row.createCell((short) 6).setCellValue(openTask.getString("status"));
 //                updating row counter
                 ++i;                       
+//                adding files
+                Statement st = con.createStatement();
+                ResultSet file = st.executeQuery("SELECT * FROM files WHERE task_id="+openTask.getInt("id"));
+                int j=7;
+                while(file.next()){
+                    HSSFCell cell = row.createCell((short) j);
+                    HSSFHyperlink link=new HSSFHyperlink(HSSFHyperlink.LINK_URL);
+                    link.setAddress("http://localhost:8084/TaskManager/files.jsp?file="+file.getInt("id"));
+                    cell.setCellValue(file.getString("filename"));
+                    cell.setHyperlink(link);
+                    ++j;
+                }
             }
 //            seetting contentType and header
             response.setContentType("application/octet-stream");
