@@ -48,7 +48,7 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="nav-add-worker" role="tabpanel">
-                    <form method="POST" class="card card-body">
+                    <form method="POST" class="card card-body" action="./addEmployee.jsp">
                         <div class="form-group">
                             <label for="name">Name: </label>
                             <input type="text" 
@@ -71,12 +71,25 @@
                                     name="department"
                                     id="department">
                                 <%while(dept.next()){%>
-                                <option calue="<%=dept.getInt("id")%>">
+                                <option value="<%=dept.getInt("id")%>">
                                     <%=dept.getString("department_name")%>
                                 </option>
                                 <%}%>
                             </select>
                         </div>
+                        <%
+                        if(session.getAttribute("message")!=null){
+                        %>
+                        <div class="alert alert-info"><%=session.getAttribute("message")%></div>
+                        <%  
+                            session.removeAttribute("message");
+                        }else if(session.getAttribute("error")!=null){
+                        %>
+                        <div class="alert alert-warning"><%=session.getAttribute("error")%></div>
+                        <%        
+                            session.removeAttribute("error");
+                        }
+                        %>
                         <input type="submit" name="add" value="Add Employee" class="btn btn-outline-success"/>
                     </form>
                 </div>
