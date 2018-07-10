@@ -180,9 +180,11 @@
                                   readonly><%= task.getString("description") %>
                         </textarea>
                         <label for="closed-remarks">Remarks: </label>
-                        <textarea class="form-control"
+                        <textarea form="form<%=task.getInt("id")%>"
+                                  name="remarks"
+                                  class="form-control"
                                   id="closed-remarks"
-                                  readonly><%= task.getString("remarks") %>
+                                  required><%= task.getString("remarks") %>
                         </textarea>
                         <label for="uploaded-files">Files: </label>
                         <ul id="uploaded-files" class="list-inline">
@@ -196,6 +198,10 @@
                             </li>
                         <%}%>
                         </ul>
+                        <form method="POST" action="./reOpenTask.jsp" id="form<%=task.getInt("id")%>">
+                            <input type="hidden" name="task" value="<%=task.getInt("id")%>">
+                            <input class="btn btn-outline-warning" type="submit" value="Re-open" name="reOpen">
+                        </form>
                     </div>
                     <div class="card-footer center-text">
                         <label>Employee Assigned: <%= task.getString("worker.name") %></label>
