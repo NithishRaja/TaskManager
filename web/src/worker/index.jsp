@@ -86,8 +86,9 @@
                       readonly><%= task.getString("description") %></textarea>
             <label for="inprogress-remarks">Remarks: </label>
             <textarea class="form-control"
-                      id="inprogress-remarks"
-                      readonly><%= task.getString("remarks") %></textarea>
+                      form="form<%=task.getInt("id")%>"
+                      name="remarks"
+                      id="inprogress-remarks"><%=task.getString("remarks")%></textarea>
             <!-- Form to upload file related to task -->
             <label for="upload-file-form">File: </label>
             <ul class="list-inline">
@@ -107,7 +108,7 @@
             </div>
             <!-- Form to change task status from inprogress to closed -->
             <div class="card-footer">
-            <form method="POST" action="./closeTask.jsp">
+            <form id="form<%=task.getInt("id")%>" method="POST" action="./closeTask.jsp">
                 <input type="hidden" name="id" value="<%=task.getInt("id")%>"/>
                 <input class="btn btn-outline-success" type="submit" name="close_task" value="Close task"/>
             </form>

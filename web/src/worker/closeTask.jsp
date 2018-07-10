@@ -9,7 +9,7 @@
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/taskmanager", "root", "nithish98");                    
 //        updating task status to closed
-        String query="UPDATE tasklist SET status=\"closed\" WHERE id="
+        String query="UPDATE tasklist SET remarks=\""+request.getParameter("remarks")+"\", status=\"closed\" WHERE id="
             +request.getParameter("id");
         PreparedStatement ps=con.prepareStatement(query);
         int i = ps.executeUpdate();
