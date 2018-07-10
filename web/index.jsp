@@ -35,7 +35,7 @@
         if(request.getParameter("submit")!=null){
             Statement stmt=con.createStatement();  
 //            getting password for email
-            ResultSet worker=stmt.executeQuery("SELECT * FROM worker, department WHERE worker.email=\""+request.getParameter("email")+"\"");
+            ResultSet worker=stmt.executeQuery("SELECT * FROM worker, department WHERE worker.email=\""+request.getParameter("email")+"\" AND worker.department_id=department.id");
 //            checking password
             if(worker.next()&&request.getParameter("password").equals(worker.getString("password"))){
                 session.setAttribute("name", worker.getString("name"));
