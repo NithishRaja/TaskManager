@@ -21,6 +21,7 @@
                 <div class="nav nav-tabs card-header-tabs nav-tabs-center" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-inprogress-tab" data-toggle="tab" href="#nav-inprogress" role="tab" aria-controls="nav-profile" aria-selected="false">In Progress</a>
                     <a class="nav-item nav-link" id="nav-assigned-tab" data-toggle="tab" href="#nav-assigned" role="tab" aria-controls="nav-home" aria-selected="true">Assigned</a>
+                    <a class="nav-item nav-link" id="nav-closed-tab" data-toggle="tab" href="#nav-closed" role="tab" aria-controls="nav-home" aria-selected="true">Closed</a>
                 </div>
             </nav>
         </div>
@@ -113,9 +114,56 @@
             </div>
             </div>
         </div>
-        <%}}%>
+        <%}}
+        task.beforeFirst();
+        %>
         </div>
         </div>
+        <div class="tab-pane fade" id="nav-closed" role="tabpanel">
+        <div class="accordion" id="closedTask">
+            <%while(task.next()){
+                if(task.getString("tasklist.status").equals("closed")){
+            %>
+            <div class="card">
+                <hgroup class="card-header card-toggle-header">
+                    <div class="card-toggle-hgroup">
+                        <h5><%= task.getString("department_name") %> - <%= task.getString("date") %></h5>
+                    </div>
+                    <button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#closedTask<%=task.getInt("tasklist.id")%>">Toggle</button>
+                </hgroup>
+                <div id="closedTask<%=task.getInt("tasklist.id")%>" class="collapse" data-parent="#closedTask">
+                <div class="card-body">
+                    <label for="closed-description">Description: </label>
+                        <textarea class="form-control"
+                              id="closed-description"
+                              readonly><%= task.getString("description") %>
+                    </textarea>
+                    <label for="closed-remarks">Remarks: </label>
+                    <textarea class="form-control"
+                              id="closed-remarks"
+                              readonly><%= task.getString("remarks") %>
+                    </textarea>
+                    <label for="uploaded-files">Files: </label>
+                    <ul id="uploaded-files" class="list-inline">
+                    <%
+                        Statement ss = con.createStatement();
+                        ResultSet file = ss.executeQuery("SELECT filename, id FROM files WHERE task_id="+task.getInt("id"));
+                        while(file.next()){
+                    %>
+                        <li class="list-inline-item">
+                            <a href="./downloadFile.jsp?file=<%=file.getInt("id")%>" class="btn btn-outline-info"><%=file.getString("filename")%></a>
+                        </li>
+                    <%}%>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <%}}
+            %>
+            </div>
+        </div>
+        
+        
         </div>
         </div>
         </section>
