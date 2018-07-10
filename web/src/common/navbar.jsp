@@ -12,6 +12,8 @@
             </div>
             <form id="logout" method="POST" action="./../../index.jsp" style="display: none;"></form>
             <div class="dropdown-divider"></div>
+            <a href="./../common/editAccount.jsp" class="dropdown-item">Edit Account</a>
+            <div class="dropdown-divider"></div>
             <input form="logout" class="dropdown-item" type="submit" value="Logout" />
         </div>
     </div>
