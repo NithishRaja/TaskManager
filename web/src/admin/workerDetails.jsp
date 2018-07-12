@@ -6,6 +6,7 @@
             response.setHeader("Location", "./index.jsp");
         }
         try{
+            Commons values = new Commons();
 //            connecting to database
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection con = DriverManager.getConnection(values.getDatabaseUrl(), values.getDatabaseUsername(), values.getDatabasePassword());

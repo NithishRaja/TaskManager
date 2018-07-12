@@ -48,6 +48,18 @@
                 row.createCell((short) 5).setCellValue(task.getString("date"));
 //                updating row counter
                 ++i;
+//                adding files
+                Statement st = con.createStatement();
+                ResultSet file = st.executeQuery("SELECT * FROM files WHERE task_id="+task.getInt("id"));
+                int j=7;
+                while(file.next()){
+                    HSSFCell cell = row.createCell((short) j);
+                    HSSFHyperlink link=new HSSFHyperlink(HSSFHyperlink.LINK_URL);
+                    link.setAddress("http://localhost:8084/TaskManager/files.jsp?file="+file.getInt("id"));
+                    cell.setCellValue(file.getString("filename"));
+                    cell.setHyperlink(link);
+                    ++j;
+                }                
             }
 //            writing file
             FileOutputStream fileOut =  new FileOutputStream(filename);
