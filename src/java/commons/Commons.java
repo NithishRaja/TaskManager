@@ -16,6 +16,8 @@ public class Commons {
     private String databaseUrl = "jdbc:mysql://localhost:3306/taskmanager";
     private String databaseUsername = "root";
     private String databasePassword = "nithish98";
+    private String host = "http://localhost";
+    private int port = 8084;
     
     public String getEmailName(){
         return emailName;
@@ -34,5 +36,8 @@ public class Commons {
     }
     public String getDatabasePassword(){
         return databasePassword;
+    }
+    public String getAddress(){
+        return host+":"+port+"/TaskManager/";
     }
 }

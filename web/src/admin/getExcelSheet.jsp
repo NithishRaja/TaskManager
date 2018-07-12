@@ -55,7 +55,7 @@
                 while(file.next()){
                     HSSFCell cell = row.createCell((short) j);
                     HSSFHyperlink link=new HSSFHyperlink(HSSFHyperlink.LINK_URL);
-                    link.setAddress("http://localhost:8084/TaskManager/files.jsp?file="+file.getInt("id"));
+                    link.setAddress(values.getAddress()+"files.jsp?file="+file.getInt("id"));
                     cell.setCellValue(file.getString("filename"));
                     cell.setHyperlink(link);
                     ++j;
