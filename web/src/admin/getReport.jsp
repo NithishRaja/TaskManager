@@ -18,7 +18,7 @@
             Statement stmt2 = con.createStatement();
             ResultSet openTask = stmt2.executeQuery("SELECT * FROM tasklist, department WHERE department.id=tasklist.department_id AND tasklist.status=\"open\" ORDER BY tasklist.status DESC");
 //            setting file name
-            String filename="F:/Nithish/spreadsheet/report.xls";
+            String filename=values.getCloudAddress()+"report.xls";
 //            creating new sheet
             HSSFWorkbook hwb=new HSSFWorkbook();
             HSSFSheet sheet =  hwb.createSheet("new sheet");

@@ -16,6 +16,7 @@ public class Commons {
     private String databaseUrl = "jdbc:mysql://localhost:3306/taskmanager";
     private String databaseUsername = "root";
     private String databasePassword = "nithish98";
+    private String cloudAddress = "F:/Nithish/fileupload/";
     private String host = "http://localhost";
     private int port = 8084;
     
@@ -39,5 +40,8 @@ public class Commons {
     }
     public String getAddress(){
         return host+":"+port+"/TaskManager/";
+    }
+    public String getCloudAddress(){
+        return cloudAddress;
     }
 }

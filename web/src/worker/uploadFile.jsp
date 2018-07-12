@@ -7,11 +7,12 @@
 <%@ page import="org.apache.commons.io.output.*" %>
 <%@page import="commons.*"%>
 <%    
+    Commons values = new Commons();
 //    declaring variables
     File file ;
     int maxFileSize = 5000 * 1024;
     int maxMemSize = 5000 * 1024;
-    String filePath = "F:/Nithish/fileupload/";
+    String filePath = values.getCloudAddress();
     String id = null;
     String fileName = null;
 //    getting content type
@@ -24,7 +25,6 @@
         ServletFileUpload upload = new ServletFileUpload(factory);
         upload.setSizeMax(maxFileSize);
         try{
-            Commons values = new Commons();
             List fileItems = upload.parseRequest(request);
 //            initiating iterator for getting form field values
             Iterator formFieldIterator = fileItems.iterator();
