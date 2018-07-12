@@ -41,7 +41,7 @@
                 <input type="text"
                        class="form-control"
                        id="department"
-                       value="<%=worker.getString("department_id")%>"
+                       value="<%=worker.getString("department_name")%>"
                        readonly>
             </article>
             <article>
