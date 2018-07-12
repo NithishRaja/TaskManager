@@ -1,18 +1,21 @@
 # TASK MANAGER
 
-Simple task managing system with admin assigning task to workers and update task upon completion
+Simple task managing system to monitor and allocate tasks in a project
 
 ## GETTING STARTED
 
 * use Netbeans and create a JSP web project
 * replace the web folder in the project directory with the folder in this repo
-* create database **taskmanager** with tables as specified below
+* create MySQL database **taskmanager** with tables as specified below
+* go into commons class and change config values to your liking
+* import all libraries/JAR files mentioned below
 * finally run the project using Netbeans
 
 ## EDITING CODE
 
 * code can be found inside `/web` directory
 * main code is inside `/web/src` directory
+* custom packages are inside `/src/java` directory
 * static files are found inside `/web/static` directory
 
 ## DATABASES
@@ -29,3 +32,11 @@ Simple task managing system with admin assigning task to workers and update task
 * `org.apache.commons.io`
 * `java.sql`
 * `org.apache.poi`
+
+## FEATURES
+
+* Any user can enter new tasks
+* Admin can assign tasks to employees, get report on employees and get overall report
+* Admin can view files uploaded by employees
+* Admin can reopen closed tasks if necessary
+* Employees can start working on task, upload files regarding the task, close task
